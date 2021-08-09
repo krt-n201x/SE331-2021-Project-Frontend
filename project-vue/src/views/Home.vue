@@ -1,18 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
+    <div v-for="patient in patients" :key="patient.id" :patient="patient">
+      {{ patient.name }} {{ patient.surname }}
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import DatabaseService from "@/services/DatabaseService.js";
 
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
+  name: "PatientList",
+  data(){
+    return {
+      patients: null,
+    }
   },
+  created(){
+    DatabaseService.getAllPatients()
+       .then((response) => {
+        this.patients = response.data
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 };
 </script>

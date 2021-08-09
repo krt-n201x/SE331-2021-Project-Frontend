@@ -10,11 +10,14 @@ const apiClient = axios.create({
 })
 
 export default {
-    getEvents(perPage, page) {
+    getAllPatients() {
+        return apiClient.get('/patients')
+    },
+    getPatients(perPage, page) {
         return apiClient.get('/patients?_limit=' + perPage + '&_page=' + page)
     },
     //Added new call
-    getEvent(id) {
+    getPatient(id) {
         return apiClient.get('/patients/' + id)
     }
 }
