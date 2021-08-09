@@ -1,0 +1,22 @@
+{
+    "patients": [{
+        "id": 1,
+        "name": "John",
+        "surname": "Doe",
+        "status": "Taken 2 doses",
+        "age": "42",
+        "hometown": "Chiang Mai, Thailand",
+        "vaccine": [{
+                "vac_id": 1,
+                "name": "Sinovac",
+                "date_injected": "July 12, 2021"
+            },
+            {
+                "vac_id": 2,
+                "name": "Asta",
+                "date_injected": "August 12, 2021"
+            }
+        ],
+        "doctor_comm": "Nothing"
+    }]
+}
