@@ -134,12 +134,12 @@
         "hometown": "Bangkok, Thailand",
         "vaccine": [{
                 "vac_id": 1,
-                "name": "Cinovac",
+                "name": "Sinovac",
                 "date_injected": "๋July 28, 2021"
             },
             {
                 "vac_id": 2,
-                "name": "Cinovac",
+                "name": "Sinovac",
                 "date_injected": "August 28, 2021"
             }
         ],
@@ -176,7 +176,7 @@
         "hometown": "Nakhon Pathom, Thailand",
         "vaccine": [{
                 "vac_id": 1,
-                "name": "Cinovac",
+                "name": "Sinovac",
                 "date_injected": "๋July 30, 2021"
             },
             {
@@ -197,12 +197,12 @@
         "hometown": "Nakhon Pathom, Thailand",
         "vaccine": [{
                 "vac_id": 1,
-                "name": "Cinovac",
+                "name": "Sinovac",
                 "date_injected": "๋July 30, 2021"
             },
             {
                 "vac_id": 2,
-                "name": "Cinovac",
+                "name": "Sinovac",
                 "date_injected": "August 29, 2021"
             }
         ],
@@ -260,7 +260,7 @@
         "hometown": "Phuket, Thailand",
         "vaccine": [{
                 "vac_id": 1,
-                "name": "Cinovac",
+                "name": "Sinovac",
                 "date_injected": "๋July 19, 2021"
             },
             {
