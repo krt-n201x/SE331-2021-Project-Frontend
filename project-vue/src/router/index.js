@@ -5,6 +5,9 @@ import DoctorComment from '@/views/event/DoctorComment.vue'
 import Details from '@/views/event/Details.vue'
 import EventLayout from '@/views/event/Layout.vue'
 
+import DatabaseService from "../services/DatabaseService.js";
+import Store from '@/store'
+
 const routes = [
   {
     path: "/",
@@ -23,6 +26,15 @@ const routes = [
     name: 'EventLayout',
     props: true,
     component: EventLayout,
+    beforeEnter: (to) => {
+      return DatabaseService.getPatient(to.params.id)
+        .then((response) => {
+          Store.patients = response.data
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
     children: [
       {
         path: '',
