@@ -1,46 +1,48 @@
 <template>
-<div>
-  <div class="patient">
-    <PatientCard v-for="patient in patients" :key="patient.id" :patient="patient"/>
-  
+  <div>
+    <div class="patient">
+      <PatientCard
+        v-for="patient in patients"
+        :key="patient.id"
+        :patient="patient"
+      />
 
-    <div class="pagination">
-      <router-link
-        id="back"
-        :to="{ name: 'Home', query: { page: page - 1 } }"
-        rel="prev"
-        v-if="page != 1"
-      >
-        Back</router-link
-      >
-      <router-link
-        id="next"
-        :to="{ name: 'Home', query: { page: page + 1 } }"
-        rel="next"
-        v-if="hasNextPage"
-      >
-        Next</router-link
-      >
+      <div class="pagination">
+        <router-link
+          id="back"
+          :to="{ name: 'Home', query: { page: page - 1 } }"
+          rel="prev"
+          v-if="page != 1"
+        >
+          Back</router-link
+        >
+        <router-link
+          id="next"
+          :to="{ name: 'Home', query: { page: page + 1 } }"
+          rel="next"
+          v-if="hasNextPage"
+        >
+          Next</router-link
+        >
+      </div>
     </div>
   </div>
-</div>
-
 </template>
 
 <script>
-import DatabaseService from "@/services/DatabaseService.js";
-import PatientCard from '../components/PatientCard.vue';
+import DatabaseService from '@/services/DatabaseService.js'
+import PatientCard from '../components/PatientCard.vue'
 
 export default {
   components: { PatientCard },
-  name: "PatientList",
+  name: 'PatientList',
   props: {
     page: {
       type: Number,
       required: true
     }
   },
-  data(){
+  data() {
     return {
       patients: null,
       totalEvents: 0
@@ -54,18 +56,19 @@ export default {
           comp.totalEvents = response.headers['x-total-count']
         })
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
+        next({ name: 'NetworkError' })
       })
   },
-  beforeRouteUpdate(routeTo) {
+  beforeRouteUpdate(routeTo, routeFrom, next) {
     DatabaseService.getPatients(8, parseInt(routeTo.query.page) || 1)
       .then((response) => {
         this.patients = response.data
         this.totalEvents = response.headers['x-total-count']
+        next()
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
+        next({ name: 'NetworkError' })
       })
   },
   computed: {
@@ -74,11 +77,10 @@ export default {
       return this.page < totalPages
     }
   }
-};
+}
 </script>
 
 <style scoped>
-
 .patient {
   display: flex;
   flex-direction: column;

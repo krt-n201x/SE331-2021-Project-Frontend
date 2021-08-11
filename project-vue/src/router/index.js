@@ -1,25 +1,25 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/Home.vue'
 import Vaccine from '@/views/event/Vaccine.vue'
 import DoctorComment from '@/views/event/DoctorComment.vue'
 import Details from '@/views/event/Details.vue'
 import EventLayout from '@/views/event/Layout.vue'
-
-import DatabaseService from "../services/DatabaseService.js";
+import NotFound from '../views/NotFound.vue'
+import NetWorkError from '@/views/NetworkError.vue'
+import DatabaseService from '../services/DatabaseService.js'
 import Store from '@/store'
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Home,
     props: (route) => ({ page: parseInt(route.query.page) || 1 })
   },
   {
-    path: "/about",
-    name: "About",
-    component: () =>
-      import("../views/About.vue"),
+    path: '/about',
+    name: 'About',
+    component: () => import('../views/About.vue')
   },
   {
     path: '/event/:id',
@@ -32,7 +32,14 @@ const routes = [
           Store.patients = response.data
         })
         .catch((error) => {
-          console.log(error)
+          if (error.response && error.response.status == 404) {
+            return {
+              name: '404Resource',
+              params: { resource: 'patient' }
+            }
+          } else {
+            return { name: 'NetworkError' }
+          }
         })
     },
     children: [
@@ -54,12 +61,28 @@ const routes = [
         component: Vaccine
       }
     ]
+  },
+  {
+    path: '/404/:',
+    name: '404Resource',
+    component: NotFound,
+    props: true
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
+  },
+  {
+    path: '/network-error',
+    name: 'NetworkError',
+    component: NetWorkError
   }
-];
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router

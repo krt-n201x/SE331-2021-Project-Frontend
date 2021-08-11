@@ -4,21 +4,21 @@
     :to="{ name: 'Details', params: { id: patient.id } }"
   >
     <div class="patient-card">
-      <h1>{{ patient.name }} {{patient.surname}}</h1>
+      <h1>{{ patient.name }} {{ patient.surname }}</h1>
     </div>
   </router-link>
 </template>
 
 <script>
 export default {
-  name: "PatientCard",
+  name: 'PatientCard',
   props: {
     patient: {
       type: Object,
-      required: true,
-    },
-  },
-};
+      required: true
+    }
+  }
+}
 </script>
 
 <style scoped>
