@@ -1,28 +1,40 @@
 <template>
 <div>
   <div class="patient">
-    <PatientCard v-for="patient in patients" :key="patient.id" :patient="patient"/>
-  
-
-    <div class="pagination">
-      <router-link
-        id="back"
-        :to="{ name: 'Home', query: { page: page - 1 } }"
-        rel="prev"
-        v-if="page != 1"
-      >
-        Back</router-link
-      >
-      <router-link
-        id="next"
-        :to="{ name: 'Home', query: { page: page + 1 } }"
-        rel="next"
-        v-if="hasNextPage"
-      >
-        Next</router-link
-      >
+    <div class="p-grid">
+    <PatientCard class="p-col-6 p-md-3 p-lg-3" v-for="patient in patients" :key="patient.id" :patient="patient"/>
     </div>
   </div>
+
+  
+  <div class="pagination">  
+
+      <div id="back">
+        <Button class="p-button-raised p-button-success p-button p-component" v-if="page != 1">
+        <router-link
+          :to="{ name: 'Home', query: { page: page - 1 } }"
+          rel="prev"
+        >
+          Back
+        </router-link>
+        </Button>
+      </div>
+
+      <div id="next">
+        <Button class="p-button-raised p-button-success p-button p-component" v-if="hasNextPage">
+        <router-link
+          :to="{ name: 'Home', query: { page: page + 1 } }"
+          rel="next"
+          
+        >
+          Next
+        </router-link>
+        </Button>
+      </div>
+
+  </div> 
+  
+  
 </div>
 
 </template>
@@ -80,16 +92,14 @@ export default {
 <style scoped>
 
 .patient {
-  display: flex;
+  margin: 5%;
   flex-direction: column;
   align-items: center;
 }
 .pagination {
-  display: flex;
-  width: 290px;
+  margin: 5%;
 }
 .pagination a {
-  flex: 1;
   text-decoration: none;
   color: #2c3e50;
 }

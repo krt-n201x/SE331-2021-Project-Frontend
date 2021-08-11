@@ -4,7 +4,8 @@
     :to="{ name: 'Details', params: { id: patient.id } }"
   >
     <div class="patient-card">
-      <h1>{{ patient.name }} {{patient.surname}}</h1>
+      <h1>{{ patient.name }}</h1> 
+      <h1>{{patient.surname}}</h1>
     </div>
   </router-link>
 </template>
@@ -23,11 +24,13 @@ export default {
 
 <style scoped>
 .patient-card {
-  padding: 20px;
-  width: 250px;
+  padding: 80px;
+  width: 280px;
+  text-align: center;
   cursor: pointer;
   border: 1px solid #39495c;
-  margin-bottom: 18px;
+  margin: 15px;
+  border-radius: 15%;
 }
 
 .patient-card:hover {
