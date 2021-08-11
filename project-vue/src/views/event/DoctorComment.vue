@@ -1,41 +1,44 @@
 <template>
   <div>
-
     <div class="comment-form">    
-        <textarea type="text" v-model="comment" placeholder="Comment is here: with markdown"></textarea>
+        <textarea type="text" v-model="content" placeholder="Comment is here: with markdown"></textarea>
         <label>
-          <input type="text" v-model="author" v-on="keyup.addComment | key.enter" placeholder="Author name here:">
+          <input type="text" v-model="author" v-on:keyup.enter="addComment" placeholder="Author name here:">
         </label>
-        <button v-on="click.addComment">Add Comment</button>
+        <button @click="addComment">Add Comment</button>
    </div>
-    <div v-repeat="comments" class="comments-box" v-markdown="ola">
+    <div v-for="comment in comments" :key="comment.author" class="comments-box">
+
          <p class="author">
-           {{author}}: {{hours}}
+           {{comment.author}}:
+                 <br>
+                {{comment.content}}
         </p>
-        <p v-html="content | marked" class="content-comment"></p>
-        <p v-on="click.removeComment($index)" class="delete">Delete</p>
+        <!-- <p v-html="content | marked" class="content-comment"></p> -->
+        <!-- <p v-on:click="removeComment($content)" class="delete">Delete</p> -->
     </div>
   </div>
 
 </template>
 <script>
 export default {
-    data: {
-        comments: [
-            {author: '', content: ''}
-        ]
+    data() {
+        return{
+        // eslint-disable-next-line no-unused-vars
+        comments:[]
+        }
     },
-    methods:{
-        addComment: function (){
-            if(this.author && this.comment){
-                this.comments.push({author: this.author, content: this.comment})
+    methods: {
+        addComment() {
+            if(this.author && this.content){
+                this.comments.push({author: this.author, content: this.content})
             }else{
                 alert('Fields Empty');
             }
         },
         
-        removeComment: function (index){
-            this.comments.remove(index);
+        removeComment(index){
+            this.comments.filter(index);
         }
     }
 
