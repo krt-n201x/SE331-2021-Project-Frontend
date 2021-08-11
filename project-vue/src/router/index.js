@@ -8,6 +8,7 @@ import NotFound from '../views/NotFound.vue'
 import NetWorkError from '@/views/NetworkError.vue'
 import DatabaseService from '../services/DatabaseService.js'
 import Store from '@/store'
+import NProgress from 'nprogress'
 
 const routes = [
   {
@@ -83,6 +84,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach(() => {
+  NProgress.start()
+})
+router.afterEach(() => {
+  NProgress.done()
 })
 
 export default router
