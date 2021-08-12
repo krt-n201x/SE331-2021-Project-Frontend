@@ -1,15 +1,16 @@
 <template>
 <div id="flashMessage" v-if="Store.flashMessage">
     {{ Store.flashMessage }}
-  </div>
+</div>
 <div>
   <TabMenu :model="items" />
+</div>
   <router-view />
 </template>
 
 <script>
 export default {
-  inject: ['Store']
+  inject: ['Store'],
 	data() {
 		return {
 			items: [

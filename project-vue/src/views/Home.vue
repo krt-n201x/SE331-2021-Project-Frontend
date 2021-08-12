@@ -57,6 +57,7 @@ export default {
       totalEvents: 0
     }
   },
+  // eslint-disable-next-line no-unused-vars
   beforeRouteEnter(routeTo, routeFrom, next) {
     DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
       .then((response) => {
@@ -69,7 +70,7 @@ export default {
         next({ name: 'NetworkError' })
       })
   },
-  beforeRouteUpdate(routeTo) {
+  beforeRouteUpdate(routeTo, routeFrom, next) {
     DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
       .then((response) => {
         this.patients = response.data
