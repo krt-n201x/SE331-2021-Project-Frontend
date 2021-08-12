@@ -1,6 +1,22 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+import 'nprogress/nprogress.css'
+import PrimeVue from 'primevue/config'
+import Button from 'primevue/button'
+import TabMenu from 'primevue/tabmenu';
+import Fieldset from 'primevue/fieldset';
 
-createApp(App).use(store).use(router).mount("#app");
+import 'primeflex/primeflex.css'
+import 'primevue/resources/themes/saga-blue/theme.css'
+import 'primevue/resources/primevue.min.css'
+import 'primeicons/primeicons.css'
+
+createApp(App)
+    .use(router, PrimeVue)
+    .component('Button', Button)
+    .component('TabMenu', TabMenu)
+    .component('Fieldset', Fieldset)
+    .provide('Store', store)
+    .mount('#app')
