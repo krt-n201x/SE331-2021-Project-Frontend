@@ -4,8 +4,19 @@
     :to="{ name: 'Details', params: { id: patient.id } }"
   >
     <div class="patient-card">
-      <h1>{{ patient.name }}</h1> 
-      <h1>{{patient.surname}}</h1>
+      <div class="p-grid">
+
+        <div class="p-col-5">
+          <img class="photo" :src='patient.photo'>
+        </div>
+
+        <div class="p-col">
+          <h2>{{ patient.name }}</h2> 
+          <p>{{patient.surname}}</p>
+          Vaccine Status: <p>{{patient.status}}</p>
+        </div>
+
+      </div>
     </div>
   </router-link>
 </template>
@@ -23,16 +34,21 @@ export default {
 </script>
 
 <style scoped>
+.photo {
+  width: 100%;
+  padding-top: 15% ;
+  align-items: center;
+}
 .patient-card {
-  padding: 80px;
-  width: 280px;
-  text-align: center;
+  padding: 15px;
+  height: 200px;
+  width: 350px;
   cursor: pointer;
   border: 1px solid #39495c;
   margin: 15px;
-  border-radius: 15%;
+  border-radius: 5%;
+  text-align: left;
 }
-
 .patient-card:hover {
   transform: scale(1.01);
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);

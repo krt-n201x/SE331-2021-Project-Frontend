@@ -2,7 +2,7 @@
 <div>
   <div class="patient">
     <div class="p-grid">
-    <PatientCard class="p-col-6 p-md-3 p-lg-3" v-for="patient in patients" :key="patient.id" :patient="patient"/>
+    <PatientCard class="p-col-12 p-md-6 p-lg-4" v-for="patient in patients" :key="patient.id" :patient="patient"/>
     </div>
   </div>
 
@@ -59,7 +59,7 @@ export default {
     }
   },
   beforeRouteEnter(routeTo, routeFrom, next) {
-    DatabaseService.getPatients(8, parseInt(routeTo.query.page) || 1)
+    DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
       .then((response) => {
         next((comp) => {
           comp.patients = response.data
@@ -71,7 +71,7 @@ export default {
       })
   },
   beforeRouteUpdate(routeTo) {
-    DatabaseService.getPatients(8, parseInt(routeTo.query.page) || 1)
+    DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
       .then((response) => {
         this.patients = response.data
         this.totalEvents = response.headers['x-total-count']
@@ -82,7 +82,7 @@ export default {
   },
   computed: {
     hasNextPage() {
-      let totalPages = Math.ceil(this.totalEvents / 8)
+      let totalPages = Math.ceil(this.totalEvents / 9)
       return this.page < totalPages
     }
   }
