@@ -22,6 +22,7 @@
 </template>
 <script>
 export default {
+    inject: ['Store'],
     data() {
         return{
         // eslint-disable-next-line no-unused-vars
@@ -35,12 +36,21 @@ export default {
             }else{
                 alert('Fields Empty');
             }
+            this.Store.flashMessage =
+        'Your comment is successfully posted'
+        setTimeout(() => {
+            this.Store.flashMessage = ''
+            }, 3000)
+            this.$router.push({
+                name: 'DocterComment',
+            params: { id: this.patients.id }
+        })
         },
         
         removeComment(index){
             this.comments.filter(index);
-        }
-    }
+        },
+    },
 
 }
 </script>
