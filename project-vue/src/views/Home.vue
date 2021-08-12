@@ -1,32 +1,41 @@
 <template>
-  <div>
-    <div class="patient">
-      <PatientCard
-        v-for="patient in patients"
-        :key="patient.id"
-        :patient="patient"
-      />
-
-      <div class="pagination">
-        <router-link
-          id="back"
-          :to="{ name: 'Home', query: { page: page - 1 } }"
-          rel="prev"
-          v-if="page != 1"
-        >
-          Back</router-link
-        >
-        <router-link
-          id="next"
-          :to="{ name: 'Home', query: { page: page + 1 } }"
-          rel="next"
-          v-if="hasNextPage"
-        >
-          Next</router-link
-        >
-      </div>
+<div>
+  <div class="patient">
+    <div class="p-grid">
+    <PatientCard class="p-col-12 p-md-6 p-lg-4" v-for="patient in patients" :key="patient.id" :patient="patient"/>
     </div>
   </div>
+
+  
+  <div class="pagination">  
+
+      <div id="back">
+        <Button class="p-button-raised p-button-success p-button p-component" v-if="page != 1">
+        <router-link
+          :to="{ name: 'Home', query: { page: page - 1 } }"
+          rel="prev"
+        >
+          Back
+        </router-link>
+        </Button>
+      </div>
+
+      <div id="next">
+        <Button class="p-button-raised p-button-success p-button p-component" v-if="hasNextPage">
+        <router-link
+          :to="{ name: 'Home', query: { page: page + 1 } }"
+          rel="next"
+          
+        >
+          Next
+        </router-link>
+        </Button>
+      </div>
+
+  </div> 
+  
+  
+</div>
 </template>
 
 <script>
@@ -49,7 +58,7 @@ export default {
     }
   },
   beforeRouteEnter(routeTo, routeFrom, next) {
-    DatabaseService.getPatients(8, parseInt(routeTo.query.page) || 1)
+    DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
       .then((response) => {
         next((comp) => {
           comp.patients = response.data
@@ -60,8 +69,8 @@ export default {
         next({ name: 'NetworkError' })
       })
   },
-  beforeRouteUpdate(routeTo, routeFrom, next) {
-    DatabaseService.getPatients(8, parseInt(routeTo.query.page) || 1)
+  beforeRouteUpdate(routeTo) {
+    DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
       .then((response) => {
         this.patients = response.data
         this.totalEvents = response.headers['x-total-count']
@@ -73,7 +82,7 @@ export default {
   },
   computed: {
     hasNextPage() {
-      let totalPages = Math.ceil(this.totalEvents / 8)
+      let totalPages = Math.ceil(this.totalEvents / 9)
       return this.page < totalPages
     }
   }
@@ -82,18 +91,16 @@ export default {
 
 <style scoped>
 .patient {
-  display: flex;
+  margin: 5%;
   flex-direction: column;
   align-items: center;
 }
 .pagination {
-  display: flex;
-  width: 290px;
+  margin: 5%;
 }
 .pagination a {
-  flex: 1;
   text-decoration: none;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 #back {
