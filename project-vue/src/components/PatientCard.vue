@@ -40,17 +40,19 @@ export default {
   align-items: center;
 }
 .patient-card {
+  background-color: rgb(255, 255, 255);
   padding: 15px;
   height: 200px;
   width: 350px;
   cursor: pointer;
-  border: 1px solid #39495c;
   margin: 15px;
   border-radius: 5%;
   text-align: left;
 }
+
 .patient-card:hover {
-  transform: scale(1.01);
+  transition: 0.25s;
+  transform: scale(1.15);
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
 }
 

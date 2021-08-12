@@ -1,14 +1,29 @@
 <template>
 <div>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
+  <TabMenu :model="items" />
   <router-view />
 </div>
 </template>
 
+<script>
+export default {
+	data() {
+		return {
+			items: [
+                {label: 'Home', icon: 'pi pi-fw pi-home', to: '/'},
+                {label: 'About', icon: 'pi pi-fw pi-file', to: '/about'}
+            ]
+		}
+	}
+}
+</script>
+
 <style>
+
+body {
+  background-color: #DFEAE2;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

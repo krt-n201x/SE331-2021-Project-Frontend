@@ -101,7 +101,7 @@ export default {
 }
 .pagination a {
   text-decoration: none;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 #back {
