@@ -1,10 +1,19 @@
 <template>
+<div id="flashMessage" v-if="Store.flashMessage">
+    {{ Store.flashMessage }}
+  </div>
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
   <router-view />
 </template>
+
+<script>
+export default {
+  inject: ['Store']
+}
+</script>
 
 <style>
 #app {
@@ -27,4 +36,18 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+@keyframes fade {
+  from {
+    background: mediumaquamarine;
+  }
+  to {
+    background: transparent;
+  }
+}
+#flashMessage {
+  animation-name: fade; 
+  animation-duration: 6s;
+} 
+
 </style>
