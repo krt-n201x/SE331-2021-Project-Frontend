@@ -1,9 +1,8 @@
-import { createApp } from 'vue'
+import { createApp} from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'nprogress/nprogress.css'
-
 import PrimeVue from 'primevue/config'
 import Button from 'primevue/button'
 import TabMenu from 'primevue/tabmenu';

@@ -1,4 +1,7 @@
 <template>
+<div id="flashMessage" v-if="Store.flashMessage">
+    {{ Store.flashMessage }}
+  </div>
 <div>
   <TabMenu :model="items" />
   <router-view />
@@ -6,6 +9,7 @@
 
 <script>
 export default {
+  inject: ['Store']
 	data() {
 		return {
 			items: [
@@ -43,4 +47,18 @@ body {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+@keyframes fade {
+  from {
+    background: mediumaquamarine;
+  }
+  to {
+    background: transparent;
+  }
+}
+#flashMessage {
+  animation-name: fade; 
+  animation-duration: 6s;
+} 
+
 </style>
