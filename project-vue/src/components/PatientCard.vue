@@ -9,13 +9,15 @@
         <div class="p-col-5">
           <img class="photo" :src='patient.photo'>
         </div>
-
-        <div class="p-col">
+        <div class="p-col" id="info">
+        <div id="info2">
+          
           <h2>{{ patient.name }}</h2> 
           <p>{{patient.surname}}</p>
           Vaccine Status: <p>{{patient.status}}</p>
+          
         </div>
-
+        </div>
       </div>
     </div>
   </router-link>
@@ -53,11 +55,24 @@ export default {
 .patient-card:hover {
   transition: 0.25s;
   transform: scale(1.15);
+  background-color: rgb(248, 248, 248);
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
 }
 
 .patient-link {
   color: #2c3e50;
   text-decoration: none;
+}
+#info {
+  border-radius: 5%;
+  background-color: rgb(248, 248, 248);
+}
+#info:hover {
+  border-radius: 5%;
+  background-color: rgb(255, 255, 255);
+}
+
+#info2 {
+  padding-left: 10%;
 }
 </style>
