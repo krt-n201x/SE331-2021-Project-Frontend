@@ -36,23 +36,22 @@
   
   
 </div>
-
 </template>
 
 <script>
-import DatabaseService from "@/services/DatabaseService.js";
-import PatientCard from '../components/PatientCard.vue';
+import DatabaseService from '@/services/DatabaseService.js'
+import PatientCard from '../components/PatientCard.vue'
 
 export default {
   components: { PatientCard },
-  name: "PatientList",
+  name: 'PatientList',
   props: {
     page: {
       type: Number,
       required: true
     }
   },
-  data(){
+  data() {
     return {
       patients: null,
       totalEvents: 0
@@ -66,8 +65,8 @@ export default {
           comp.totalEvents = response.headers['x-total-count']
         })
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
+        next({ name: 'NetworkError' })
       })
   },
   beforeRouteUpdate(routeTo) {
@@ -75,9 +74,10 @@ export default {
       .then((response) => {
         this.patients = response.data
         this.totalEvents = response.headers['x-total-count']
+        next()
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
+        next({ name: 'NetworkError' })
       })
   },
   computed: {
@@ -86,11 +86,10 @@ export default {
       return this.page < totalPages
     }
   }
-};
+}
 </script>
 
 <style scoped>
-
 .patient {
   margin: 5%;
   flex-direction: column;
