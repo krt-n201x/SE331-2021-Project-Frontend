@@ -1,22 +1,31 @@
 <template>
-  <div>
-    <div class="comment-form">    
-        <textarea type="text" v-model="content" placeholder="Comment is here: with markdown"></textarea>
-        <label>
-          <input type="text" v-model="author" v-on:keyup.enter="addComment" placeholder="Author name here:">
-        </label>
-        <button @click="addComment">Add Comment</button>
-   </div>
+  <div class="content">
+    
+    <Fieldset legend="Comment"> 
     <div v-for="comment in comments" :key="comment.author" class="comments-box">
-
-         <p class="author">
-           {{comment.author}}:
-                 <br>
-                {{comment.content}}
+        <div class="commentbox">
+        <p class="author">
+            Doctor: {{comment.author}}
+        <br>
+            comment :
+        {{comment.content}}
         </p>
-        <!-- <p v-html="content | marked" class="content-comment"></p> -->
-        <!-- <p v-on:click="removeComment($content)" class="delete">Delete</p> -->
-    </div>
+        </div>
+    </div> 
+    </Fieldset>
+<br>
+    <Fieldset legend="Write comment">
+        <div class="commentbox">
+    <div class="comment-form">    
+        <textarea type="text" v-model="content" placeholder="You can write the comment here!"></textarea>
+        <label>
+          <input type="text" v-model="author" v-on:keyup.enter="addComment" placeholder="Docter name">
+        </label>
+        <Button class="p-button p-component p-button-rounded" @click="addComment">Add Comment</Button>
+   </div>
+        </div>
+   </Fieldset>
+
   </div>
 
 </template>
@@ -73,7 +82,7 @@ export default {
 }
 
 textarea{
-    width: 100%;
+    width: 90%;
     border: 2px solid #ccc;
     border-radius: 7px;
     height: 70px;
@@ -88,10 +97,11 @@ input{
 }
 
 button{
-    background: #333;
-    color: #ccc;
+    color: rgb(255, 255, 255);
     border: 0;
-    padding: 5px;
+    margin-top: 7px;
+    margin-left: 2%;
+    padding: 10px;
     cursor: pointer;
 }
 
@@ -114,7 +124,13 @@ button{
 }
 
 .author{
-    margin: 10px 0;
+    margin: 10px;
     font-weight: bold;
+}
+.content {
+    margin: 5%;
+}
+.commentbox{
+    text-align: left;
 }
 </style>
