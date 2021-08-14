@@ -25,7 +25,10 @@ export default {
 <style>
 
 body {
-  background-color: #DFEAE2;
+  background-image: url("bg.jpg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-attachment: fixed;
 }
 
 #app {

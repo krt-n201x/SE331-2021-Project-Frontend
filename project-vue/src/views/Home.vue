@@ -1,6 +1,8 @@
 <template>
 <div>
+  
   <div class="patient">
+    <h1>Patient List</h1>
     <div class="p-grid">
     <PatientCard class="p-col-12 p-md-6 p-lg-4" v-for="patient in patients" :key="patient.id" :patient="patient"/>
     </div>
@@ -93,6 +95,7 @@ export default {
 <style scoped>
 .patient {
   margin: 5%;
+  margin-top: 0%;
   flex-direction: column;
   align-items: center;
 }

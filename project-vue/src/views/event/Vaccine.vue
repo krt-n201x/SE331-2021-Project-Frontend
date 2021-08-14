@@ -1,9 +1,9 @@
 <template>
     <div class="vaccine">
     <h2>Taken Vaccine Information</h2>
-    <table>
-  <VaccineComp v-for="vac in patients.vaccine" :key="vac.vac_id" :vac="vac" />
-    </table>
+    <div class="p-grid">
+      <VaccineComp class="p-col-12 p-md-6 p-lg-4" v-for="vac in patients.vaccine" :key="vac.vac_id" :vac="vac" />
+    </div>
     </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
 .vaccine{
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
