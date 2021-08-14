@@ -13,7 +13,7 @@
         <div id="info2">
           
           <h2>{{ patient.name }}</h2> 
-          <p>{{patient.surname}}</p>
+          <h3>{{patient.surname}}</h3>
           Vaccine Status: <p>{{patient.status}}</p>
           
         </div>
@@ -44,7 +44,7 @@ export default {
 .patient-card {
   background-color: rgb(255, 255, 255);
   padding: 15px;
-  height: 200px;
+  height: 208px;
   width: 350px;
   cursor: pointer;
   margin: 15px;
@@ -55,7 +55,7 @@ export default {
 .patient-card:hover {
   transition: 0.25s;
   transform: scale(1.15);
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(230, 228, 228);
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
 }
 

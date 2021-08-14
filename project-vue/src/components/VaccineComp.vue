@@ -20,15 +20,18 @@ export default {
 
 <style scoped>
 .vac-card {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5%;
   padding: 20px;
   width: 250px;
-  cursor: pointer;
-  border: 1px solid #39495c;
+  margin: 15px;
   margin-bottom: 18px;
 }
 
 .vac-card:hover {
-  transform: scale(1.01);
+  transition: 0.25s;
+  transform: scale(1.05);
+  background-color: rgb(248, 248, 248);
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
 }
 
