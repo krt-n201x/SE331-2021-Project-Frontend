@@ -262,50 +262,6 @@
             ],
             "doctor_comm": "headache and still got it",
             "doctor_name": "Dto"
-        },
-        {
-            "id": 13,
-            "name": "Robert",
-            "surname": "Roode",
-            "status": "Taken 2 doses",
-            "age": "43",
-            "hometown": "Phuket, Thailand",
-            "photo": "https://www.img.in.th/images/30ace35710f11b4a7f21f7295e508df5.png",
-            "vaccine": [{
-                    "vac_id": 1,
-                    "name": "Sinovac",
-                    "date_injected": "๋July 19, 2021"
-                },
-                {
-                    "vac_id": 2,
-                    "name": "Astrazeneca",
-                    "date_injected": "August 29, 2021"
-                }
-            ],
-            "doctor_comm": "No comment",
-            "doctor_name": "Miller"
-        },
-        {
-            "id": 14,
-            "name": "Stephanie",
-            "surname": "McMahon",
-            "status": "Taken 1 doses",
-            "age": "43",
-            "hometown": "Phuket, Thailand",
-            "photo": "https://www.img.in.th/images/a2bf62a37f1666840b96d4b5b636dadf.png",
-            "vaccine": [{
-                    "vac_id": 1,
-                    "name": "Astrazeneca",
-                    "date_injected": "๋August 29, 2021"
-                },
-                {
-                    "vac_id": 0,
-                    "name": "-",
-                    "date_injected": "-"
-                }
-            ],
-            "doctor_comm": "where is teddy",
-            "doctor_name": "Mr.Bean"
         }
     ]
 }
