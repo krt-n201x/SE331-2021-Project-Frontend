@@ -6,6 +6,7 @@ import 'nprogress/nprogress.css'
 import PrimeVue from 'primevue/config'
 import Button from 'primevue/button'
 import TabMenu from 'primevue/tabmenu';
+import MegaMenu from 'primevue/megamenu';
 import Fieldset from 'primevue/fieldset';
 
 import 'primeflex/primeflex.css'
@@ -17,6 +18,7 @@ createApp(App)
     .use(router, PrimeVue)
     .component('Button', Button)
     .component('TabMenu', TabMenu)
+    .component('MegaMenu', MegaMenu)
     .component('Fieldset', Fieldset)
     .provide('Store', store)
     .mount('#app')

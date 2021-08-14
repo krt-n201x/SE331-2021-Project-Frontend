@@ -2,6 +2,16 @@
   <div class="content">
     
     <Fieldset legend="Comment"> 
+        <div class="comments-box">
+        <div class="commentbox">
+        <p class="author">
+            Doctor: {{ patients.doctor_name }}
+        <br>
+            comment :
+        {{ patients.doctor_comm }}
+        </p>
+        </div>
+        </div>
     <div v-for="comment in comments" :key="comment.author" class="comments-box">
         <div class="commentbox">
         <p class="author">
@@ -31,6 +41,7 @@
 </template>
 <script>
 export default {
+    props: ['patients'],
     inject: ['Store'],
     data() {
         return{
@@ -128,9 +139,14 @@ button{
     font-weight: bold;
 }
 .content {
-    margin: 5%;
+    width: 100%;
+    margin-top: 23px ;
+    margin-left: 5%;
+    margin-right: 9%;
 }
 .commentbox{
+    width: 100%;
     text-align: left;
+    
 }
 </style>
