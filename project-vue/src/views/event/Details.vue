@@ -27,12 +27,14 @@ export default {
 
 <style>
 .FS{
+  height: 80%;
+  width: 100%;
   text-align: left;
 }
 
 .photo {
-  width: 250px;
-  padding-left: 25%;
+  width: 200px;
+  padding-left: 15%;
 }
 
 .size{

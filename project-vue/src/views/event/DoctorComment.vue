@@ -128,9 +128,11 @@ button{
     font-weight: bold;
 }
 .content {
+    width: 100%;
     margin: 5%;
 }
 .commentbox{
+    width: 100%;
     text-align: left;
 }
 </style>
