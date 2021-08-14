@@ -38,8 +38,8 @@ export default {
 }
 
 .size{
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 5%;
+  padding-right: 8%;
 }
 
 </style>
