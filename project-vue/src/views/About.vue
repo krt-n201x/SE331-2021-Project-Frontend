@@ -8,6 +8,7 @@
   <p>622115001 KANOKNART CHAWKANHA</p>
   <p>622115003 KRITSADA THATNGOENKWEIN</p>
   <p>622115029 PEERAPAT THUNGNGOEN</p>
+  <p> ||| </p>
   </div>
 </Fieldset>
   </div>
@@ -24,6 +25,7 @@ export default {
 <style>
 .FS{
   text-align: left;
+  margin-top: 5%;
 }
 
 .photo {
