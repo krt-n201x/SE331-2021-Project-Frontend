@@ -13,7 +13,7 @@ export default {
                 GStore.currentUser = response.data.user
             }
             else {
-                localStorage.setItem('lowuser',user.username)
+                localStorage.setItem('user',user.username)
                 GStore.currentLowUser = user.username
             }
             return Promise.resolve(response.data)
