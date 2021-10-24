@@ -29,7 +29,7 @@ export default {
   inject: ['Store'],
   computed: {
     currentLowUser() {
-      return localStorage.getItem('user')
+      return localStorage.getItem('lowuser')
       },
     currentUser() {
     return localStorage.getItem('user')
