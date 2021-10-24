@@ -3,7 +3,15 @@
     {{ Store.flashMessage }}
 </div>
 <div>
-  <TabMenu :model="items" />
+  <span v-if="isAdmin">
+    <TabMenu :model="itemsAdmin" />
+  </span>
+  <span v-else-if="isDoctor">
+    <TabMenu :model="itemsDoc"/>
+  </span>
+  <span v-else-if="isUser">
+    <TabMenu :model="itemsUser" />
+  </span>
   <nav class="navbar navbar-expand">
       <ul v-if="!Store.currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -31,13 +39,24 @@
 </template>
 
 <script>
+
 import AuthService from '@/services/AuthService.js'
+
 export default {
   inject: ['Store'],
   computed: {
     currentUser() {
       return localStorage.getItem('user')
-      }
+      },
+    isAdmin(){
+      return AuthService.hasRoles('ROLE_ADMIN')
+    },
+    isDoctor(){
+      return AuthService.hasRoles('ROLE_DOCTOR')
+    },
+    isUser(){
+      return AuthService.hasRoles('ROLE_USER')
+    }
 },
   methods: {
     logout(){
@@ -48,10 +67,20 @@ export default {
 
 	data() {
 		return {
-			items: [
+			itemsAdmin: [
                 {label: 'Home', icon: 'pi pi-fw pi-home', to: '/'},
                 {label: 'About', icon: 'pi pi-fw pi-file', to: '/about'}
-            ]
+            ],
+      itemsDoc: [
+        {label: 'Home', icon: 'pi pi-fw pi-home', to: '/'},
+        {label: 'About', icon: 'pi pi-fw pi-file', to: '/about'},
+        {label: 'About', icon: 'pi pi-fw pi-file', to: '/responpat'}
+      ],
+      itemsUser: [
+        {label: 'Iformation', icon: 'pi pi-fw pi-home', to: '/patmenu'},
+        {label: 'About', icon: 'pi pi-fw pi-file', to: '/about'},
+
+      ],
 		}
 	}
 }

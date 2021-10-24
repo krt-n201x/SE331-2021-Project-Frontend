@@ -14,6 +14,7 @@ import Store from '@/store'
 import NProgress from 'nprogress'
 import Login from '@/views/LoginForm.vue'
 import NotAuth from '@/views/NotAuth.vue'
+import Information from '../views/patmenu.vue'
 
 const routes = [{
         path: '/',
@@ -26,6 +27,12 @@ const routes = [{
         name: 'About',
         component: () =>
             import ('../views/About.vue')
+    },
+    {
+        path: '/patmenu',
+        name: 'Information',
+        component: () =>
+            import ('../views/patmenu.vue')
     },
     {
         path: '/event/:id',
