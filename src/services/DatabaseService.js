@@ -10,5 +10,12 @@ export default {
     //Added new call
     getPatient(id) {
         return apiClient.get('/patients/' + id)
+    },
+    saveDoctor(user) {
+        return apiClient.post('/doctors', 
+            {
+                name: user.firstname,
+                surname: user.lastname
+            })
     }
 }

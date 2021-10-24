@@ -4,7 +4,6 @@
 </div>
 <div>
   <TabMenu :model="items" />
-
   <nav class="navbar navbar-expand">
       <ul v-if="!Store.currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -18,7 +17,7 @@
           <!-- </router-link> -->
         </li>
       </ul>
-    </nav>
+  </nav>
 
 </div>
   <router-view />
