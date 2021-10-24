@@ -11,19 +11,10 @@ export default {
     getPatient(id) {
         return apiClient.get('/patients/' + id)
     },
-    saveDoctor(user) {
-        return apiClient.post('/doctors', {
-            name: user.firstname,
-            surname: user.lastname,
-            age : user.age
+    saveComment(patient, id) {
+        return apiClient.post('/comment', {
+            id: id,
+            doctor_comm: patient.comment,
         })
     },
-    savePat(user) {
-        return apiClient.post('/doctors', {
-            name: user.firstname,
-            surname: user.lastname,
-            age : user.age,
-            hometown : user.hometown
-        })
-    }
 }
