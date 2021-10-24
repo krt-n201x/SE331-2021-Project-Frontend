@@ -11,6 +11,7 @@ export default {
             if(JSON.stringify(response.data.user) != null){
                 localStorage.setItem('user',JSON.stringify(response.data.user))
                 GStore.currentUser = response.data.user
+
             }
             else {
                 localStorage.setItem('lowuser',user.username)
@@ -28,7 +29,6 @@ export default {
         localStorage.removeItem('lowuser')
         GStore.currentUser = null
         GStore.currentLowUser = null
-
     },
     getUser(){
         return JSON.parse(localStorage.getItem('user'))

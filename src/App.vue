@@ -12,11 +12,18 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <!-- <router-link to="/login" class="nav-link"> -->
+           <router-link to="/login" class="nav-link">
             <font-awesome-icon icon="sign-in-alt" /> Login
-          <!-- </router-link> -->
+           </router-link>
         </li>
       </ul>
+    <ul v-if="Store.currentUser">
+    <li class="nav-item">
+      <a class="nav-link" @click="logout">
+        <font-awesome-icon icon="sign-out-alt" /> LogOut
+      </a>
+    </li>
+    </ul>
   </nav>
 
 </div>
@@ -24,6 +31,7 @@
 </template>
 
 <script>
+import AuthService from '@/services/AuthService.js'
 export default {
   inject: ['Store'],
   computed: {
@@ -31,6 +39,13 @@ export default {
       return localStorage.getItem('user')
       }
 },
+  methods: {
+    logout(){
+      AuthService.logout()
+      this.$router.go()
+    }
+  },
+
 	data() {
 		return {
 			items: [
