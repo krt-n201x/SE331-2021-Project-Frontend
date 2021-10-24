@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import Register from '../views/Registration.vue'
 import Vaccine from '@/views/event/Vaccine.vue'
 import DoctorComment from '@/views/event/DoctorComment.vue'
 import Details from '@/views/event/Details.vue'
@@ -94,6 +95,11 @@ const routes = [{
         path: '/network-error',
         name: 'NetworkError',
         component: NetWorkError
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register
     }
 ]
 
