@@ -1,8 +1,8 @@
 <template>
-  <!-- <router-link
+  <router-link
     class="patient-link"
-    :to="{ name: 'Details' }"
-  > -->
+    :to="{ name: 'Registerpat' }"
+  >
     <div class="patient-card">
       <div class="p-grid">
         <div class="p-col-10">
@@ -16,6 +16,7 @@
         </div>
       </div>
     </div>
+</router-link>
 
     <div class="patient-card">
       <div class="p-grid">
@@ -30,7 +31,7 @@
         </div>
       </div>
     </div>
-  <!-- </router-link> -->
+  
 </template>
 
 <script>
