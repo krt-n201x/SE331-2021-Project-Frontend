@@ -26,6 +26,10 @@
             <label for="lastname">Last Name</label>
             <Field name="lastname" type="text" class="form-control" />
           </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <Field name="age" type="text" class="form-control" />
+          </div>
 
           <div class="form-group">
             <button class="btn btn-primary btn-block" :disabled="loading">
@@ -86,7 +90,10 @@ export default {
         .required('First name is required!'),
       lastname: yup
         .string()
-        .required('Last name is required!')
+        .required('Last name is required!'),
+      age: yup
+        .string()
+        .required('Age is required!')
     })
 
     return {
@@ -103,8 +110,7 @@ export default {
       this.successful = false
       this.loading = true
       
-      AuthService.saveUser(user)
-      
+      AuthService.saveDoc(user)
       .then(() => {
         this.$router.push({name: 'Home'})
       })

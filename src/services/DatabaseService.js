@@ -14,7 +14,16 @@ export default {
     saveDoctor(user) {
         return apiClient.post('/doctors', {
             name: user.firstname,
-            surname: user.lastname
+            surname: user.lastname,
+            age : user.age
+        })
+    },
+    savePat(user) {
+        return apiClient.post('/doctors', {
+            name: user.firstname,
+            surname: user.lastname,
+            age : user.age,
+            hometown : user.hometown
         })
     }
 }

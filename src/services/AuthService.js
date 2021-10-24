@@ -50,21 +50,36 @@ export default {
                 password: user.password,
                 email: user.email
             })
-            // let formData = new FormData()
-            // formData.append('user', user)
-            // return apiClient.post('/register', formData, {
-            //     headers: {
-            //         'Content-Type': 'multipart/form-data'
-            //     }
-            // })
+            
     },
-    saveUser(user) {
+    saveDoc(user) {
         return apiClient.post('/registerdoc', {
                 username: user.username,
                 email: user.email,
                 password: user.password,
                 firstname: user.firstname,
-                lastname: user.lastname
+                lastname: user.lastname,
+                age : user.age
+            })
+            .then((response) => {
+                localStorage.setItem('token', response.data.token)
+                localStorage.setItem('user', JSON.stringify(response.data.user))
+                GStore.currentUser = response.data.user
+                return Promise.resolve(response.data)
+            })
+            .catch((error) => {
+                return Promise.reject(error)
+            })
+    },
+    savePat(user) {
+        return apiClient.post('/registerpat', {
+                username: user.username,
+                email: user.email,
+                password: user.password,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                age: user.age,
+                hometown: user.hometown
             })
             .then((response) => {
                 localStorage.setItem('token', response.data.token)
