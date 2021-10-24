@@ -53,6 +53,7 @@
 <script>
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
+import DatabaseService from '@/services/DatabaseService.js'
 // eslint-disable-next-line
 import AuthService from '@/services/AuthService.js'
 export default {
@@ -80,7 +81,13 @@ export default {
         .string()
         .required('Password is required!')
         .min(6, 'Must be at least 6 characters!')
-        .max(40, 'Must be maximum 40 characters!')
+        .max(40, 'Must be maximum 40 characters!'),
+      firstname: yup
+        .string()
+        .required('First name is required!'),
+      lastname: yup
+        .string()
+        .required('Last name is required!')
     })
 
     return {
@@ -97,8 +104,11 @@ export default {
       this.successful = false
       this.loading = true
       
-      AuthService.saveUser(user).then(() => {
-        this.$router.push({name: 'EventList'})
+      AuthService.saveUser(user)
+      
+      .then(() => {
+        DatabaseService.saveDoctor(user)
+        this.$router.push({name: 'Home'})
       })
       .catch(() => {
         this.message = 'could not register'

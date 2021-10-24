@@ -12,8 +12,6 @@
   <span v-else-if="isUser">
     <TabMenu :model="itemsUser" />
   </span>
-
-
   <nav class="navbar navbar-expand">
       <ul v-if="!Store.currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -22,19 +20,27 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <!-- <router-link to="/login" class="nav-link"> -->
+           <router-link to="/login" class="nav-link">
             <font-awesome-icon icon="sign-in-alt" /> Login
-          <!-- </router-link> -->
+           </router-link>
         </li>
       </ul>
-    </nav>
+    <ul v-if="Store.currentUser">
+    <li class="nav-item">
+      <a class="nav-link" @click="logout">
+        <font-awesome-icon icon="sign-out-alt" /> LogOut
+      </a>
+    </li>
+    </ul>
+  </nav>
 
 </div>
   <router-view />
 </template>
 
 <script>
-import AuthService from "@/services/AuthService";
+
+import AuthService from '@/services/AuthService.js'
 
 export default {
   inject: ['Store'],
@@ -52,6 +58,13 @@ export default {
       return AuthService.hasRoles('ROLE_USER')
     }
 },
+  methods: {
+    logout(){
+      AuthService.logout()
+      this.$router.go()
+    }
+  },
+
 	data() {
 		return {
 			itemsAdmin: [

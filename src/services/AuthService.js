@@ -11,6 +11,7 @@ export default {
             if(JSON.stringify(response.data.user) != null){
                 localStorage.setItem('user',JSON.stringify(response.data.user))
                 GStore.currentUser = response.data.user
+
             }
             else {
                 localStorage.setItem('lowuser',user.username)
@@ -28,7 +29,6 @@ export default {
         localStorage.removeItem('lowuser')
         GStore.currentUser = null
         GStore.currentLowUser = null
-
     },
     getUser(){
         return JSON.parse(localStorage.getItem('user'))
@@ -59,5 +59,23 @@ export default {
         //         'Content-Type': 'multipart/form-data'
         //     }
         // })
+    },
+    saveUser(user) {
+        return apiClient.post('/register', {
+                username: user.username,
+                email: user.email,
+                password: user.password,
+                firstname: user.firstname,
+                lastname : user.lastname
+            })
+            .then((response) => {
+                localStorage.setItem('token', response.data.token)
+                localStorage.setItem('user', JSON.stringify(response.data.user))
+                GStore.currentUser = response.data.user
+                return Promise.resolve(response.data)
+            })
+            .catch((error) => {
+                return Promise.reject(error)
+            })
     }
 }
