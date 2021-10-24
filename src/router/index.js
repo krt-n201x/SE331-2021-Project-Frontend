@@ -8,6 +8,7 @@ import EventLayout from '@/views/event/Layout.vue'
 import NotFound from '../views/NotFound.vue'
 import NetWorkError from '@/views/NetworkError.vue'
 import Registerpat from '@/views/register/RegisterPat.vue'
+import Registerdoc from '@/views/register/RegisterDoc.vue'
 import DatabaseService from '../services/DatabaseService.js'
 import Store from '@/store'
 import NProgress from 'nprogress'
@@ -106,6 +107,11 @@ const routes = [{
       path: '/registerpat',
       name: 'Registerpat',
       component: Registerpat
+    },
+    {
+      path: '/registerdoc',
+      name: 'Registerdoc',
+      component: Registerdoc
     }
 ]
 
