@@ -1,11 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import Register from '../views/Registration.vue'
 import Vaccine from '@/views/event/Vaccine.vue'
 import DoctorComment from '@/views/event/DoctorComment.vue'
 import Details from '@/views/event/Details.vue'
 import EventLayout from '@/views/event/Layout.vue'
 import NotFound from '../views/NotFound.vue'
 import NetWorkError from '@/views/NetworkError.vue'
+import Registerpat from '@/views/register/RegisterPat.vue'
+import Registerdoc from '@/views/register/RegisterDoc.vue'
 import DatabaseService from '../services/DatabaseService.js'
 import Store from '@/store'
 import NProgress from 'nprogress'
@@ -94,6 +97,21 @@ const routes = [{
         path: '/network-error',
         name: 'NetworkError',
         component: NetWorkError
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register
+    },
+    {
+      path: '/registerpat',
+      name: 'Registerpat',
+      component: Registerpat
+    },
+    {
+      path: '/registerdoc',
+      name: 'Registerdoc',
+      component: Registerdoc
     }
 ]
 

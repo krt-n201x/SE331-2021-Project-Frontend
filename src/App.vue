@@ -4,6 +4,21 @@
 </div>
 <div>
   <TabMenu :model="items" />
+  <nav class="navbar navbar-expand">
+      <ul v-if="!Store.currentUser" class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <router-link to="/register" class="nav-link">
+            <font-awesome-icon icon="user-plus" /> Sign Up
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <!-- <router-link to="/login" class="nav-link"> -->
+            <font-awesome-icon icon="sign-in-alt" /> Login
+          <!-- </router-link> -->
+        </li>
+      </ul>
+  </nav>
+
 </div>
   <router-view />
 </template>
@@ -11,6 +26,11 @@
 <script>
 export default {
   inject: ['Store'],
+  computed: {
+    currentUser() {
+      return localStorage.getItem('user')
+      }
+},
 	data() {
 		return {
 			items: [
