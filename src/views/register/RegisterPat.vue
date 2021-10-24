@@ -100,13 +100,14 @@ export default {
       this.message = ''
       this.successful = false
       this.loading = true
-      
-      AuthService.saveUser(user).then(() => {
-        this.$router.push({name: 'EventList'})
-      })
-      .catch(() => {
-        this.message = 'could not register'
-      })
+
+      AuthService.saveUser(user)
+        .then(() => {
+          this.$router.push({ name: 'EventList' })
+        })
+        .catch(() => {
+          this.message = 'could not register'
+        })
     }
   }
 }

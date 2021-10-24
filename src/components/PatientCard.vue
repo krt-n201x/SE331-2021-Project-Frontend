@@ -5,18 +5,16 @@
   >
     <div class="patient-card">
       <div class="p-grid">
-
         <div class="p-col-5">
-          <img class="photo" :src='patient.photo'>
+          <img class="photo" :src="patient.photo" />
         </div>
         <div class="p-col" id="info">
-        <div id="info2">
-          
-          <h2>{{ patient.name }}</h2> 
-          <h3>{{patient.surname}}</h3>
-          Vaccine Status: <p>{{patient.status}}</p>
-          
-        </div>
+          <div id="info2">
+            <h2>{{ patient.name }}</h2>
+            <h3>{{ patient.surname }}</h3>
+            Vaccine Status:
+            <p>{{ patient.status }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -38,7 +36,7 @@ export default {
 <style scoped>
 .photo {
   width: 100%;
-  padding-top: 15% ;
+  padding-top: 15%;
   align-items: center;
 }
 .patient-card {

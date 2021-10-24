@@ -1,18 +1,18 @@
 <template>
-<div id="flashMessage" v-if="Store.flashMessage">
+  <div id="flashMessage" v-if="Store.flashMessage">
     {{ Store.flashMessage }}
-</div>
-<div>
-  <span v-if="isAdmin">
-    <TabMenu :model="itemsAdmin" />
-  </span>
-  <span v-else-if="isDoctor">
-    <TabMenu :model="itemsDoc"/>
-  </span>
-  <span v-else-if="isUser">
-    <TabMenu :model="itemsUser" />
-  </span>
-  <nav class="navbar navbar-expand">
+  </div>
+  <div>
+    <span v-if="isAdmin">
+      <TabMenu :model="itemsAdmin" />
+    </span>
+    <span v-else-if="isDoctor">
+      <TabMenu :model="itemsDoc" />
+    </span>
+    <span v-else-if="isUser">
+      <TabMenu :model="itemsUser" />
+    </span>
+    <nav class="navbar navbar-expand">
       <ul v-if="!Store.currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
           <router-link to="/register" class="nav-link">
@@ -20,26 +20,24 @@
           </router-link>
         </li>
         <li class="nav-item">
-           <router-link to="/login" class="nav-link">
+          <router-link to="/login" class="nav-link">
             <font-awesome-icon icon="sign-in-alt" /> Login
-           </router-link>
+          </router-link>
         </li>
       </ul>
-    <ul v-if="Store.currentUser">
-    <li class="nav-item">
-      <a class="nav-link" @click="logout">
-        <font-awesome-icon icon="sign-out-alt" /> LogOut
-      </a>
-    </li>
-    </ul>
-  </nav>
-
-</div>
+      <ul v-if="Store.currentUser">
+        <li class="nav-item">
+          <a class="nav-link" @click="logout">
+            <font-awesome-icon icon="sign-out-alt" /> LogOut
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
   <router-view />
 </template>
 
 <script>
-
 import AuthService from '@/services/AuthService.js'
 
 export default {
@@ -47,49 +45,47 @@ export default {
   computed: {
     currentUser() {
       return localStorage.getItem('user')
-      },
-    isAdmin(){
+    },
+    isAdmin() {
       return AuthService.hasRoles('ROLE_ADMIN')
     },
-    isDoctor(){
+    isDoctor() {
       return AuthService.hasRoles('ROLE_DOCTOR')
     },
-    isUser(){
+    isUser() {
       return AuthService.hasRoles('ROLE_USER')
     }
-},
+  },
   methods: {
-    logout(){
+    logout() {
       AuthService.logout()
       this.$router.go()
     }
   },
 
-	data() {
-		return {
-			itemsAdmin: [
-                {label: 'Home', icon: 'pi pi-fw pi-home', to: '/'},
-                {label: 'About', icon: 'pi pi-fw pi-file', to: '/about'}
-            ],
+  data() {
+    return {
+      itemsAdmin: [
+        { label: 'Home', icon: 'pi pi-fw pi-home', to: '/' },
+        { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' }
+      ],
       itemsDoc: [
-        {label: 'Home', icon: 'pi pi-fw pi-home', to: '/'},
-        {label: 'About', icon: 'pi pi-fw pi-file', to: '/about'},
-        {label: 'About', icon: 'pi pi-fw pi-file', to: '/responpat'}
+        { label: 'Home', icon: 'pi pi-fw pi-home', to: '/' },
+        { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' },
+        { label: 'About', icon: 'pi pi-fw pi-file', to: '/responpat' }
       ],
       itemsUser: [
-        {label: 'Iformation', icon: 'pi pi-fw pi-home', to: '/patmenu'},
-        {label: 'About', icon: 'pi pi-fw pi-file', to: '/about'},
-
-      ],
-		}
-	}
+        { label: 'Iformation', icon: 'pi pi-fw pi-home', to: '/patmenu' },
+        { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' }
+      ]
+    }
+  }
 }
 </script>
 
 <style>
-
 body {
-  background-image: url("bg.jpg");
+  background-image: url('bg.jpg');
   background-repeat: no-repeat;
   background-position: left top;
   background-attachment: fixed;
@@ -125,8 +121,7 @@ body {
   }
 }
 #flashMessage {
-  animation-name: fade; 
+  animation-name: fade;
   animation-duration: 6s;
-} 
-
+}
 </style>

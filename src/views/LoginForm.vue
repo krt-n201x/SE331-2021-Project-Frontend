@@ -19,9 +19,7 @@
         </div>
         <div class="form-group">
           <button class="btn btn-primary btn-block" :disabled="loading">
-            <span
-              v-show="loading"
-              class="spinner-border spinner-border-sm">
+            <span v-show="loading" class="spinner-border spinner-border-sm">
             </span>
             <span>Login</span>
           </button>
@@ -40,7 +38,7 @@
 <script>
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
-import AuthService from "@/services/AuthService.js"
+import AuthService from '@/services/AuthService.js'
 export default {
   name: 'Login',
   components: {
@@ -48,7 +46,7 @@ export default {
     Field,
     ErrorMessage
   },
-  data(){
+  data() {
     const schema = yup.object().shape({
       username: yup.string().required('Username is required!'),
       password: yup.string().required('Password is required!')
@@ -59,13 +57,15 @@ export default {
       schema
     }
   },
-  methods:{
-    handleLogin(user){
-      AuthService.login(user).then(() => {
-        this.$router.push({name: 'Home'})
-      }).catch(() => {
-        this.message = 'could not login'
-      })
+  methods: {
+    handleLogin(user) {
+      AuthService.login(user)
+        .then(() => {
+          this.$router.push({ name: 'Home' })
+        })
+        .catch(() => {
+          this.message = 'could not login'
+        })
     }
   }
 }
@@ -101,7 +101,7 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
-.error-feedback{
-  color:red;
+.error-feedback {
+  color: red;
 }
 </style>

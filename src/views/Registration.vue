@@ -2,10 +2,9 @@
   <div class="patient">
     <h1>Register</h1>
     <div class="p-grid">
-    <RegisterCard class="p-col-12 p-md-6 p-lg-4"/>
+      <RegisterCard class="p-col-12 p-md-6 p-lg-4" />
     </div>
   </div>
-
 </template>
 
 <script>
