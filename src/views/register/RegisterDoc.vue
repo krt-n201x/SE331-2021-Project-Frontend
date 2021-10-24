@@ -53,7 +53,6 @@
 <script>
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
-import DatabaseService from '@/services/DatabaseService.js'
 // eslint-disable-next-line
 import AuthService from '@/services/AuthService.js'
 export default {
@@ -107,7 +106,6 @@ export default {
       AuthService.saveUser(user)
       
       .then(() => {
-        DatabaseService.saveDoctor(user)
         this.$router.push({name: 'Home'})
       })
       .catch(() => {
