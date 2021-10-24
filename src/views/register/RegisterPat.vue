@@ -19,8 +19,12 @@
             <ErrorMessage name="password" class="error-feedback" />
           </div>
           <div class="form-group">
-            <label for="age">Age</label>
-            <Field name="age" type="text" class="form-control" />
+            <label for="firstname">First Name</label>
+            <Field name="firstname" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <Field name="lastname" type="text" class="form-control" />
           </div>
           <div class="form-group">
             <label for="hometown">Hometown</label>
