@@ -68,8 +68,11 @@ export default {
           comp.totalEvents = response.headers['x-total-count']
         })
       })
-      .catch(() => {
-        next({ name: 'NetworkError' })
+      .catch((error) => {
+       if(error.response.status === 401){
+            next({ name: '401Resource' });
+        }
+        else next({ name: 'NetworkError' });
       })
   },
   beforeRouteUpdate(routeTo, routeFrom, next) {
@@ -78,9 +81,13 @@ export default {
         this.patients = response.data
         this.totalEvents = response.headers['x-total-count']
         next()
+        
       })
-      .catch(() => {
-        next({ name: 'NetworkError' })
+      .catch((error) => {
+        if(error.response.status === 401){
+            next({ name: '401Resource' });
+        }
+        else next({ name: 'NetworkError' });
       })
   },
   computed: {

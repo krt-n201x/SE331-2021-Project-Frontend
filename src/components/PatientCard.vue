@@ -50,6 +50,7 @@ export default {
   margin: 15px;
   border-radius: 5%;
   text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .patient-card:hover {
