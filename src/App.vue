@@ -64,7 +64,7 @@ export default {
         {label: 'About', icon: 'pi pi-fw pi-file', to: '/responpat'}
       ],
       itemsUser: [
-        {label: 'Home', icon: 'pi pi-fw pi-home', to: '/'},
+        {label: 'Iformation', icon: 'pi pi-fw pi-home', to: '/patmenu'},
         {label: 'About', icon: 'pi pi-fw pi-file', to: '/about'},
 
       ],
