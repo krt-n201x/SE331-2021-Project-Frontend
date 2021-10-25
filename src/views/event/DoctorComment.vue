@@ -4,7 +4,7 @@
       <div class="comments-box">
         <div class="commentbox">
           <p class="author">
-            Doctor: {{ patients.doctor_name }}
+            Doctor: {{ patients.doctor.name }}
             <br />
             comment :
             {{ patients.doctor_comm }}
@@ -27,63 +27,81 @@
       </div>
     </Fieldset>
     <br />
-    <Fieldset legend="Write comment">
-      <div class="commentbox">
-        <div class="comment-form">
-          <textarea
-            type="text"
-            v-model="content"
-            placeholder="You can write the comment here!"
-          ></textarea>
-          <label>
-            <input
-              type="text"
-              v-model="author"
-              v-on:keyup.enter="addComment"
-              placeholder="Docter name"
-            />
-          </label>
-          <Button
-            class="p-button p-component p-button-rounded"
-            @click="addComment"
-            >Add Comment</Button
-          >
+    <Form @submit="addComment" :validation-schema="schema">
+      <div v-if="!successful">
+        <div class="form-group">
+          <label for="comment">Comment</label>
+          <Field name="comment" type="text" class="form-control" />
+          <ErrorMessage name="comment" class="error-feedback" />
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">
+            <span
+              v-show="loading"
+              class="spinner-border spinner-border-sm"
+            ></span>
+            Add Comment
+          </button>
         </div>
       </div>
-    </Fieldset>
+    </Form>
+    <!-- <Fieldset legend="Write comment">
+        <div class="commentbox">
+        <div class="comment-form">    
+        <textarea type="text" v-model="comment" placeholder="You can write the comment here!"></textarea>
+        <Button class="p-button p-component p-button-rounded" @click="addComment">Add Comment</Button>
+        </div>   
+        </div>
+   </Fieldset> -->
   </div>
 </template>
 <script>
+import { Form, Field, ErrorMessage } from 'vee-validate'
+import * as yup from 'yup'
+import DatabaseService from '@/services/DatabaseService.js'
 export default {
-  props: ['patients'],
+    props: ['patients', 'doctor'],
+    components: {
+    Form,
+    Field,
+    ErrorMessage
+  },
+  // eslint-disable-next-line
   inject: ['Store'],
   data() {
+      const schema = yup.object().shape({
+      comment: yup
+        .string()
+    })
     return {
-      // eslint-disable-next-line no-unused-vars
-      comments: []
+      successful: false,
+      message: '',
+      schema
     }
   },
-  methods: {
-    addComment() {
-      if (this.author && this.content) {
-        this.comments.push({ author: this.author, content: this.content })
-      } else {
-        alert('Fields Empty')
-      }
-      this.Store.flashMessage = 'Your comment is successfully posted'
-      setTimeout(() => {
-        this.Store.flashMessage = ''
-      }, 3000)
-      this.$router.push({
-        name: 'DocterComment',
-        params: { id: this.patients.id }
-      })
-    },
-
-    removeComment(index) {
-      this.comments.filter(index)
+    methods: { 
+        addComment(patient) {
+            this.message = ''
+             this.successful = false
+            DatabaseService.saveComment(patient, this.patients.id)
+            .then(() => {
+            location.reload()
+            })
+             .catch(() => {
+             this.message = 'could not register'
+            })
+            this.Store.flashMessage =
+            'Your comment is successfully posted'
+            setTimeout(() => {
+            this.Store.flashMessage = ''
+            }, 3000)
+            this.$router.push({
+                name: 'DoctorComment',
+            params: { id: this.patients.id }
+            })
+        },
     }
-  }
 }
 </script>
 <style scoped>

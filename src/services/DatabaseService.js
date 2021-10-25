@@ -16,5 +16,11 @@ export default {
       name: user.firstname,
       surname: user.lastname
     })
-  }
+  },
+    saveComment(patient, id) {
+        return apiClient.post('/comment', {
+            id: id,
+            doctor_comm: patient.comment,
+        })
+    }
 }
