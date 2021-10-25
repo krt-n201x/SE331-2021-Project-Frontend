@@ -15,6 +15,7 @@ import NProgress from 'nprogress'
 import Login from '@/views/LoginForm.vue'
 import NotAuth from '@/views/NotAuth.vue'
 import Information from '@/views/patmenu.vue'
+import AdminHome from '@/views/admin/AdminHome.vue'
 
 
 const routes = [
@@ -160,6 +161,12 @@ const routes = [
     path: '/registerdoc',
     name: 'Registerdoc',
     component: Registerdoc
+  },
+  {
+    path: '/adminhome',
+    name: 'AdminHome',
+    component: AdminHome,
+    props: (route) => ({ page: parseInt(route.query.page) || 1 })
   }
 ]
 
