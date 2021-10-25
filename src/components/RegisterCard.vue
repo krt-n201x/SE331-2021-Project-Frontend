@@ -1,51 +1,49 @@
 <template>
-  <router-link
-    class="patient-link"
-    :to="{ name: 'Registerpat' }"
-  >
+  <router-link class="patient-link" :to="{ name: 'Registerpat' }">
     <div class="patient-card">
       <div class="p-grid">
         <div class="p-col-10">
-        <img class="photo" src= "https://sv1.picz.in.th/images/2021/10/24/uU8ZWt.png" />
+          <img
+            class="photo"
+            src="https://sv1.picz.in.th/images/2021/10/24/uU8ZWt.png"
+          />
         </div>
-        
+
         <div class="p-col-10">
-        <div id="info2">
-          <h2>Patient</h2> 
-        </div>
+          <div id="info2">
+            <h2>Patient</h2>
+          </div>
         </div>
       </div>
     </div>
-</router-link>
-<router-link
-    class="patient-link"
-    :to="{ name: 'Registerdoc' }"
-  >
+  </router-link>
+  <router-link class="patient-link" :to="{ name: 'Registerdoc' }">
     <div class="patient-card">
       <div class="p-grid">
         <div class="p-col-10">
-        <img class="photo" src= "https://sv1.picz.in.th/images/2021/10/24/uU8fL8.png" />
+          <img
+            class="photo"
+            src="https://sv1.picz.in.th/images/2021/10/24/uU8fL8.png"
+          />
         </div>
-        
+
         <div class="p-col-10">
-        <div id="info2">
-          <h2>Doctor</h2> 
-        </div>
+          <div id="info2">
+            <h2>Doctor</h2>
+          </div>
         </div>
       </div>
     </div>
   </router-link>
 </template>
 
-<script>
-
-</script>
+<script></script>
 
 <style scoped>
 .photo {
   width: 250px;
-  padding-top: 10% ;
-  padding-left: 15% ;
+  padding-top: 10%;
+  padding-left: 15%;
   align-items: center;
 }
 .patient-card {

@@ -1,4 +1,4 @@
-import apiClient from "@/services/AxiosClient.js"
+import apiClient from '@/services/AxiosClient.js'
 import GStore from '@/store'
 
 export default {
@@ -92,3 +92,4 @@ export default {
             })
     }
 }
+

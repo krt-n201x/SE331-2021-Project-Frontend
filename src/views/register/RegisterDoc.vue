@@ -108,8 +108,7 @@ export default {
     handleRegister(user) {
       this.message = ''
       this.successful = false
-      this.loading = true
-      
+      this.loading = true      
       AuthService.saveDoc(user)
       .then(() => {
         this.$router.push({name: 'Home'})

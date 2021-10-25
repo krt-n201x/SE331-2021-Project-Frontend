@@ -116,7 +116,6 @@ export default {
       this.message = ''
       this.successful = false
       this.loading = true
-      
       AuthService.savePat(user).then(() => {
         this.$router.push({name: 'Home'})
       })

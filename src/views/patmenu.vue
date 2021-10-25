@@ -19,12 +19,8 @@ export default {
           label: 'Vaccine',
           icon: 'pi pi-fw pi-info-circle',
           to: { name: 'Vaccine' }
-        },
-        {
-          label: 'DoctorComment',
-          icon: 'pi pi-fw pi-user-edit',
-          to: { name: 'DoctorComment' }
         }
+        // {label: 'DoctorComment', icon: 'pi pi-fw pi-user-edit', to: {name: 'DoctorComment'}},
       ]
     }
   }
