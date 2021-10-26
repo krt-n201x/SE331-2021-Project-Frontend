@@ -17,6 +17,9 @@ export default {
   getUsers() {
     return apiClient.get('/admin')
   },
+  getVaccines() {
+    return apiClient.get('/vaccines')
+  },
   saveDoctor(user) {
     return apiClient.post('/doctors', {
       name: user.firstname,
@@ -34,5 +37,11 @@ export default {
         id: id,
         doctor: doctor,
       })
+  },
+  saveVac(vaccine, id){
+    return apiClient.post('/savevac', {
+      id: id,
+      vaccine: vaccine,
+    })
   }
 }
