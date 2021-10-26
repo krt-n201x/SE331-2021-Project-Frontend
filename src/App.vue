@@ -59,7 +59,7 @@ export default {
   methods: {
     logout() {
       AuthService.logout()
-      this.$router.go()
+      this.$router.go('/ ')
     }
   },
 

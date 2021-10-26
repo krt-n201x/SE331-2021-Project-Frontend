@@ -44,6 +44,13 @@ export default {
             return false
         }
     },
+    checkvac(data,check) {
+        if (data == check) {
+                return true
+        } else {
+            return false
+        }
+    },
     register(user) {
         return apiClient.post('/register', {
                 username: user.username,
