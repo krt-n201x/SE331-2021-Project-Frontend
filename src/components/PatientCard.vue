@@ -6,7 +6,7 @@
     <div class="patient-card">
       <div class="p-grid">
         <div class="p-col-5">
-          <img class="photo" :src="patient.photo" />
+          <img class="photo" :src="patient.imageUrl" />
         </div>
         <div class="p-col" id="info">
           <div id="info2">

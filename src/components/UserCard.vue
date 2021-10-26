@@ -1,9 +1,9 @@
 <template>
     <tr>
-      <td>{{ user.id }}</td>
-      <td>{{ user.firstname }}</td>
-      <td>{{ user.lastname }}</td>
-      <td>{{ user.email }}</td>
+      <td>{{ patient.id }}</td>
+      <td>{{ patient.name }}</td>
+      <td>{{ patient.surname }}</td>
+      <td>{{ patient.user.email }}</td>
     </tr>
 </template>
 
@@ -11,7 +11,7 @@
 export default {
   name: 'UserCard',
   props: {
-    user: {
+    patient: {
       type: Object,
       required: true
     }

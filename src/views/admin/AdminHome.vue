@@ -10,11 +10,12 @@
         <th>Last name</th>
         <th>Email</th>
       </tr>
+      
       <UserCard
           class="p-col-12 p-md-6 p-lg-4"
-          v-for="user in users"
-          :key="user.id"
-          :user="user"
+          v-for="patient in patients"
+          :key="patient.id"
+          :patient="patient"
         />
     </table>
   </div>
@@ -24,7 +25,7 @@
 import UserCard from '@/components/UserCard.vue'
 import DatabaseService from '@/services/DatabaseService.js'
 export default {
-  components: { UserCard },
+  components: { UserCard},
   name: 'UserList',
   props: {
     page: {
@@ -34,15 +35,16 @@ export default {
   },
   data() {
     return {
-      users: null,
+      patients: null,
       totalEvents: 0
     }
   },
+  // eslint-disable-next-line no-unused-vars
   beforeRouteEnter(routeTo, routeFrom, next) {
-    DatabaseService.getUsers(9, parseInt(routeTo.query.page) || 1)
+    DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
       .then((response) => {
         next((comp) => {
-          comp.users = response.data
+          comp.patients = response.data
           comp.totalEvents = response.headers['x-total-count']
         })
       })
@@ -53,9 +55,9 @@ export default {
       })
   },
   beforeRouteUpdate(routeTo, routeFrom, next) {
-    DatabaseService.getUsers(9, parseInt(routeTo.query.page) || 1)
+    DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
       .then((response) => {
-        this.users = response.data
+        this.patients = response.data
         this.totalEvents = response.headers['x-total-count']
         next()
       })
