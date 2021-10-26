@@ -4,8 +4,8 @@
     <p>{{ Store.patients.surname }}</p>
 
     <form @submit.prevent="saveDoctor">
-        <h3>Change Doctor to</h3>
-        <!-- <select 
+      <h3>Change Doctor to</h3>
+      <!-- <select 
         :value="modelValue"
         v-model="Store.doctors.id" 
         class="select"
@@ -19,70 +19,66 @@
             {{ option.name }} {{ option.surname }}
             </option>
         </select> -->
-        <BaseSelect
+      <BaseSelect
         :options="Store.doctors"
         v-model="event.doctor.id"
         label="Select Doctor"
       />
 
-
-        <button type="submit">Submit</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </template>
 
 <script>
 import DatabaseService from '@/services/DatabaseService.js'
-import BaseSelect from '@/components/BaseSelect.vue';
-import Store from "@/store";
+import BaseSelect from '@/components/BaseSelect.vue'
+import Store from '@/store'
 export default {
-    components: { BaseSelect },
-    props: {
-                modelValue: {   
-                    type: [String, Number, Object],
-                    default: ''
-                }
-            },
-inject: ['Store'],
+  components: { BaseSelect },
+  props: {
+    modelValue: {
+      type: [String, Number, Object],
+      default: ''
+    }
+  },
+  inject: ['Store'],
   data() {
     return {
-        event: {
-            doctor: { id: '', name: '', surname: '', age: ''}
-        },
-        doc: {
-            doctors: { id: '', name: '', surname: '', age: ''}
-        },
-        patient: Store.patients.id
-    };
+      event: {
+        doctor: { id: '', name: '', surname: '', age: '' }
+      },
+      doc: {
+        doctors: { id: '', name: '', surname: '', age: '' }
+      },
+      patient: Store.patients.id
+    }
   },
   // eslint-disable-next-line no-unused-vars
   created() {
     DatabaseService.getAllDoctors()
       .then((response) => {
-        Store.doctors = response.data;
+        Store.doctors = response.data
       })
       .catch((error) => {
-        console.log(error);
-      });
+        console.log(error)
+      })
   },
   methods: {
-      saveDoctor() {
-          DatabaseService.saveDtoP( this.event.doctor, Store.patients.id)
-          .then((response) => {
-            console.log(response)
-            this.$router.push({
-              name: 'Home'
-            })
+    saveDoctor() {
+      DatabaseService.saveDtoP(this.event.doctor, Store.patients.id)
+        .then((response) => {
+          console.log(response)
+          this.$router.push({
+            name: 'Home'
           })
-          .catch((error) => {
-            console.log(error);
-        });
-      }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   }
-
-
 }
 </script>
 
-<style>
-</style>
+<style></style>

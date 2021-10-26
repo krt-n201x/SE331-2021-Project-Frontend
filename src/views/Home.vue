@@ -24,8 +24,11 @@
       </div>
 
       <div v-if="isUser">
-      <h1>Welcome! user {{Store.currentUser.name}}</h1>
-        <router-link :to="{ name: 'Details',  params: { id: Store.currentUser.id } }">Click here to view your profile</router-link>
+        <h1>Welcome! user {{ Store.currentUser.name }}</h1>
+        <router-link
+          :to="{ name: 'Details', params: { id: Store.currentUser.id } }"
+          >Click here to view your profile</router-link
+        >
       </div>
     </div>
 

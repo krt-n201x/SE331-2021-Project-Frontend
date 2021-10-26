@@ -1,10 +1,10 @@
 <template>
-    <tr>
-      <td>{{ patient.id }}</td>
-      <td>{{ patient.name }}</td>
-      <td>{{ patient.surname }}</td>
-      <td>{{ patient.user.email }}</td>
-    </tr>
+  <tr>
+    <td>{{ patient.id }}</td>
+    <td>{{ patient.name }}</td>
+    <td>{{ patient.surname }}</td>
+    <td>{{ patient.user.email }}</td>
+  </tr>
 </template>
 
 <script>

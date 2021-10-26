@@ -30,15 +30,15 @@ export default {
     })
   },
   saveComment(patient, id) {
-        return apiClient.post('/comment', {
-            id: id,
-            doctor_comm: patient.comment,
-        })
-    },
-  saveDtoP(doctor, id){
-      return apiClient.post('/savedtop', {
-        id: id,
-        doctor: doctor,
-      })
+    return apiClient.post('/comment', {
+      id: id,
+      doctor_comm: patient.comment
+    })
+  },
+  saveDtoP(doctor, id) {
+    return apiClient.post('/savedtop', {
+      id: id,
+      doctor: doctor
+    })
   }
 }
