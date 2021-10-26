@@ -16,6 +16,11 @@ export default {
   },
   getUsers() {
     return apiClient.get('/admin')
+  getDoctor(id) {
+    return apiClient.get('/doctors/' + id)
+  },
+  getDoctors(perPage, page) {
+    return apiClient.get('/doctors?_limit=' + perPage + '&_page=' + page)
   },
   saveDoctor(user) {
     return apiClient.post('/doctors', {

@@ -85,15 +85,9 @@ export default {
         .required('Password is required!')
         .min(6, 'Must be at least 6 characters!')
         .max(40, 'Must be maximum 40 characters!'),
-      firstname: yup
-        .string()
-        .required('First name is required!'),
-      lastname: yup
-        .string()
-        .required('Last name is required!'),
-      age: yup
-        .string()
-        .required('Age is required!')
+      firstname: yup.string().required('First name is required!'),
+      lastname: yup.string().required('Last name is required!'),
+      age: yup.string().required('Age is required!')
     })
 
     return {
@@ -108,14 +102,14 @@ export default {
     handleRegister(user) {
       this.message = ''
       this.successful = false
-      this.loading = true      
+      this.loading = true
       AuthService.saveDoc(user)
-      .then(() => {
-        this.$router.push({name: 'Home'})
-      })
-      .catch(() => {
-        this.message = 'could not register'
-      })
+        .then(() => {
+          this.$router.push({ name: 'Home' })
+        })
+        .catch(() => {
+          this.message = 'could not register'
+        })
     }
   }
 }
