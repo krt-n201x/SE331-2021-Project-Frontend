@@ -4,6 +4,9 @@ export default {
   getAllPatients() {
     return apiClient.get('/patients')
   },
+  getAllDoctors() {
+    return apiClient.get('/doctors')
+  },
   getPatients(perPage, page) {
     return apiClient.get('/patients?_limit=' + perPage + '&_page=' + page)
   },
@@ -11,8 +14,8 @@ export default {
   getPatient(id) {
     return apiClient.get('/patients/' + id)
   },
-  getUsers(perPage, page) {
-    return apiClient.get('/users?_limit=' + perPage + '&_page=' + page)
+  getUsers() {
+    return apiClient.get('/admin')
   },
   saveDoctor(user) {
     return apiClient.post('/doctors', {

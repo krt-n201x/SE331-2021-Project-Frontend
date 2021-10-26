@@ -5,27 +5,30 @@
     </div>
     <table>
       <tr>
-        <th>User ID</th>
         <th>First name</th>
         <th>Last name</th>
         <th>Email</th>
       </tr>
       
-      <UserCard
-          class="p-col-12 p-md-6 p-lg-4"
-          v-for="patient in patients"
-          :key="patient.id"
-          :patient="patient"
-        />
+      <tr v-for="(data,) in patient" :key="data.id" :data="data">
+      <td>{{ data.name }}</td>
+      <td>{{ data.surname }}</td>
+      <td>{{ data.user.email}}</td>
+      </tr>
+
+      <tr v-for="(data) in doctor" :key="data.id" :data="data">
+      <td>{{ data.name }}</td>
+      <td>{{ data.surname }}</td>
+      <td>{{ data.user.email }}</td>
+      </tr>
+      
     </table>
   </div>
 </template>
 
 <script>
-import UserCard from '@/components/UserCard.vue'
 import DatabaseService from '@/services/DatabaseService.js'
 export default {
-  components: { UserCard},
   name: 'UserList',
   props: {
     page: {
@@ -35,38 +38,37 @@ export default {
   },
   data() {
     return {
-      patients: null,
-      totalEvents: 0
-    }
+      patient: null,
+      doctor: null,
+      user : null
+    };
   },
+
   // eslint-disable-next-line no-unused-vars
-  beforeRouteEnter(routeTo, routeFrom, next) {
-    DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
+  created() {
+    DatabaseService.getAllPatients()
       .then((response) => {
-        next((comp) => {
-          comp.patients = response.data
-          comp.totalEvents = response.headers['x-total-count']
-        })
+        this.patient = response.data;
       })
       .catch((error) => {
-        if (error.response.status === 401) {
-          next({ name: '401Resource' })
-        } else next({ name: 'NetworkError' })
-      })
-  },
-  beforeRouteUpdate(routeTo, routeFrom, next) {
-    DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
+        console.log(error);
+      });
+    DatabaseService.getAllDoctors()
       .then((response) => {
-        this.patients = response.data
-        this.totalEvents = response.headers['x-total-count']
-        next()
+        this.doctor = response.data;
       })
       .catch((error) => {
-        if (error.response.status === 401) {
-          next({ name: '401Resource' })
-        } else next({ name: 'NetworkError' })
+        console.log(error);
+      });
+    DatabaseService.getUsers()
+      .then((response) => {
+        this.user = response.data;
       })
+      .catch((error) => {
+        console.log(error);
+      });
   },
+
   computed: {
     hasNextPage() {
       let totalPages = Math.ceil(this.totalEvents / 9)
