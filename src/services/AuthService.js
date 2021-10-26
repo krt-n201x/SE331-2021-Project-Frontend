@@ -17,60 +17,6 @@ export default {
           localStorage.setItem('lowuser', user.username)
           Store.currentLowUser = user.username
         }
-    },
-    checkvac(data,check) {
-        if (data == check) {
-                return true
-        } else {
-            return false
-        }
-    },
-    register(user) {
-        return apiClient.post('/register', {
-                username: user.username,
-                password: user.password,
-                email: user.email
-            })
-            
-    },
-    saveDoc(user) {
-        return apiClient.post('/registerdoc', {
-                username: user.username,
-                email: user.email,
-                password: user.password,
-                firstname: user.firstname,
-                lastname: user.lastname,
-                age : user.age
-            })
-            .then((response) => {
-                localStorage.setItem('token', response.data.token)
-                localStorage.setItem('user', JSON.stringify(response.data.user))
-                GStore.currentUser = response.data.user
-                return Promise.resolve(response.data)
-            })
-            .catch((error) => {
-                return Promise.reject(error)
-            })
-    },
-    savePat(user) {
-        return apiClient.post('/registerpat', {
-                username: user.username,
-                email: user.email,
-                password: user.password,
-                firstname: user.firstname,
-                lastname: user.lastname,
-                age: user.age,
-                hometown: user.hometown
-            })
-            .then((response) => {
-                localStorage.setItem('token', response.data.token)
-                localStorage.setItem('user', JSON.stringify(response.data.user))
-                GStore.currentUser = response.data.user
-                return Promise.resolve(response.data)
-            })
-            .catch((error) => {
-                return Promise.reject(error)
-            })
         return Promise.resolve(response.data)
       })
       .catch((error) => {

@@ -62,7 +62,7 @@
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
 import DatabaseService from '@/services/DatabaseService.js'
-import AuthService from "@/services/AuthService.js";
+import AuthService from '@/services/AuthService.js'
 export default {
   props: ['patients', 'doctor'],
   components: {
@@ -104,7 +104,7 @@ export default {
         name: 'DoctorComment',
         params: { id: this.patients.id }
       })
-    },
+    }
   }
 }
 </script>
