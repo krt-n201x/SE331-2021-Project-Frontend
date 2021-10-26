@@ -72,7 +72,7 @@ export default {
       itemsDoc: [
         { label: 'Home', icon: 'pi pi-fw pi-home', to: '/' },
         { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' },
-        { label: 'About', icon: 'pi pi-fw pi-file', to: '/responpat' }
+        { label: 'Patient', icon: 'pi pi-fw pi-file', to: '/DocViews' }
       ],
       itemsUser: [
         { label: 'Iformation', icon: 'pi pi-fw pi-home', to: '/patmenu' },
