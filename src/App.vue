@@ -71,11 +71,10 @@ export default {
       ],
       itemsDoc: [
         { label: 'Home', icon: 'pi pi-fw pi-home', to: '/' },
-        { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' },
-
+        { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' }
       ],
       itemsUser: [
-        { label: 'Iformation', icon: 'pi pi-fw pi-home', to: '/patmenu' },
+        { label: 'Information', icon: 'pi pi-fw pi-home', to: '/patmenu' },
         { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' }
       ]
     }

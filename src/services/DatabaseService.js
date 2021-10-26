@@ -23,10 +23,10 @@ export default {
       surname: user.lastname
     })
   },
-    saveComment(patient, id) {
-        return apiClient.post('/comment', {
-            id: id,
-            doctor_comm: patient.comment,
-        })
-    }
+  saveComment(patient, id) {
+    return apiClient.post('/comment', {
+      id: id,
+      doctor_comm: patient.comment
+    })
+  }
 }

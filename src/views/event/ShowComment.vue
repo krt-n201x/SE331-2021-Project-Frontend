@@ -12,9 +12,9 @@
         </div>
       </div>
       <div
-          v-for="comment in comments"
-          :key="comment.author"
-          class="comments-box"
+        v-for="comment in comments"
+        :key="comment.author"
+        class="comments-box"
       >
         <div class="commentbox">
           <p class="author">
@@ -27,30 +27,30 @@
       </div>
     </Fieldset>
     <br />
-<!--    <Fieldset legend="Write comment">-->
-<!--      <div class="commentbox">-->
-<!--        <div class="comment-form">-->
-<!--          <textarea-->
-<!--              type="text"-->
-<!--              v-model="content"-->
-<!--              placeholder="You can write the comment here!"-->
-<!--          ></textarea>-->
-<!--          <label>-->
-<!--            <input-->
-<!--                type="text"-->
-<!--                v-model="author"-->
-<!--                v-on:keyup.enter="addComment"-->
-<!--                placeholder="Docter name"-->
-<!--            />-->
-<!--          </label>-->
-<!--          <Button-->
-<!--              class="p-button p-component p-button-rounded"-->
-<!--              @click="addComment"-->
-<!--          >Add Comment</Button-->
-<!--          >-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </Fieldset>-->
+    <!--    <Fieldset legend="Write comment">-->
+    <!--      <div class="commentbox">-->
+    <!--        <div class="comment-form">-->
+    <!--          <textarea-->
+    <!--              type="text"-->
+    <!--              v-model="content"-->
+    <!--              placeholder="You can write the comment here!"-->
+    <!--          ></textarea>-->
+    <!--          <label>-->
+    <!--            <input-->
+    <!--                type="text"-->
+    <!--                v-model="author"-->
+    <!--                v-on:keyup.enter="addComment"-->
+    <!--                placeholder="Docter name"-->
+    <!--            />-->
+    <!--          </label>-->
+    <!--          <Button-->
+    <!--              class="p-button p-component p-button-rounded"-->
+    <!--              @click="addComment"-->
+    <!--          >Add Comment</Button-->
+    <!--          >-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </Fieldset>-->
   </div>
 </template>
 <script>

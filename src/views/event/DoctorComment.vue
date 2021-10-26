@@ -27,12 +27,15 @@
       </div>
     </Fieldset>
     <br />
+
     <Form @submit="addComment" :validation-schema="schema">
       <div v-if="!successful">
+        <div v-if="isDoctor" >
         <div class="form-group">
           <label for="comment">Comment</label>
           <Field name="comment" type="text" class="form-control" />
           <ErrorMessage name="comment" class="error-feedback" />
+        </div>
         </div>
 
         <div class="form-group">
@@ -46,6 +49,7 @@
         </div>
       </div>
     </Form>
+
     <!-- <Fieldset legend="Write comment">
         <div class="commentbox">
         <div class="comment-form">    
@@ -60,9 +64,10 @@
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
 import DatabaseService from '@/services/DatabaseService.js'
+import AuthService from "@/services/AuthService.js";
 export default {
-    props: ['patients', 'doctor'],
-    components: {
+  props: ['patients', 'doctor'],
+  components: {
     Form,
     Field,
     ErrorMessage
@@ -70,9 +75,8 @@ export default {
   // eslint-disable-next-line
   inject: ['Store'],
   data() {
-      const schema = yup.object().shape({
-      comment: yup
-        .string()
+    const schema = yup.object().shape({
+      comment: yup.string()
     })
     return {
       successful: false,
@@ -80,28 +84,30 @@ export default {
       schema
     }
   },
-    methods: { 
-        addComment(patient) {
-            this.message = ''
-             this.successful = false
-            DatabaseService.saveComment(patient, this.patients.id)
-            .then(() => {
-            location.reload()
-            })
-             .catch(() => {
-             this.message = 'could not register'
-            })
-            this.Store.flashMessage =
-            'Your comment is successfully posted'
-            setTimeout(() => {
-            this.Store.flashMessage = ''
-            }, 3000)
-            this.$router.push({
-                name: 'DoctorComment',
-            params: { id: this.patients.id }
-            })
-        },
-    }
+  methods: {
+    addComment(patient) {
+      this.message = ''
+      this.successful = false
+      DatabaseService.saveComment(patient, this.patients.id)
+        .then(() => {
+          location.reload()
+        })
+        .catch(() => {
+          this.message = 'could not register'
+        })
+      this.Store.flashMessage = 'Your comment is successfully posted'
+      setTimeout(() => {
+        this.Store.flashMessage = ''
+      }, 3000)
+      this.$router.push({
+        name: 'DoctorComment',
+        params: { id: this.patients.id }
+      })
+    },
+    isDoctor() {
+      return AuthService.hasRoles('ROLE_DOCTOR')
+    },
+  }
 }
 </script>
 <style scoped>

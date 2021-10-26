@@ -1,7 +1,7 @@
 <template>
   <router-link
-      class="patient-link"
-      :to="{ name: 'Details', params: { id: patient.id } }"
+    class="patient-link"
+    :to="{ name: 'Details', params: { id: patient.id } }"
   >
     <div class="patient-card">
       <div class="p-grid">
