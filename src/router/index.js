@@ -176,24 +176,26 @@ const routes = [
     props: true,
     beforeEnter: (to) => {
       return DatabaseService.getPatient(to.params.id)
-        .then((response) => {
-          Store.patients = response.data
-        })
-        .catch((error) => {
-          if (error.response && error.response.status == 404) {
-            return {
-              name: '404Resource',
-              params: { resource: 'patient' }
+          .then((response) => {
+            Store.patients = response.data
+          })
+          .catch((error) => {
+            if (error.response && error.response.status == 404) {
+              return {
+                name: '404Resource',
+                params: {resource: 'patient'}
+              }
+            } else if (error.response && error.response.status == 401) {
+              return {
+                name: '401Resource'
+              }
+            } else {
+              return {name: 'NetworkError'}
             }
-          } else if (error.response && error.response.status == 401) {
-            return {
-              name: '401Resource'
-            }
-          } else {
-            return { name: 'NetworkError' }
-          }
-        })
+          })
+    }
     },
+  {
     path: '/docviews',
     name: 'DocViews',
     component: DocViews,
