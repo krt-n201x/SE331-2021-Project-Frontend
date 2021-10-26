@@ -11,10 +11,6 @@ export default {
             if (JSON.stringify(response.data.user) != null) {
                 localStorage.setItem('user', JSON.stringify(response.data.user))
                 Store.currentUser = response.data.user
-            //     let check = JSON.parse(localStorage.getItem('user'))
-            // if (check.patient != null){
-            //         this.$router.push({name: "DocViews"})
-            //     }
             } else {
                 localStorage.setItem('lowuser', user.username)
                 Store.currentLowUser = user.username
