@@ -15,8 +15,7 @@ import NProgress from 'nprogress'
 import Login from '@/views/LoginForm.vue'
 import NotAuth from '@/views/NotAuth.vue'
 import Information from '@/views/patmenu.vue'
-import DocViews from "@/views/DocViews";
-
+import DocViews from '@/views/DocViews'
 
 const routes = [
   {
@@ -37,23 +36,23 @@ const routes = [
     component: Information,
     beforeEnter: (to) => {
       return DatabaseService.getPatient(to.params.id)
-          .then((response) => {
-            Store.patients = response.data
-          })
-          .catch((error) => {
-            if (error.response && error.response.status == 404) {
-              return {
-                name: '404Resource',
-                params: { resource: 'patient' }
-              }
-            } else if (error.response && error.response.status == 401) {
-              return {
-                name: '401Resource'
-              }
-            } else {
-              return { name: 'NetworkError' }
+        .then((response) => {
+          Store.patients = response.data
+        })
+        .catch((error) => {
+          if (error.response && error.response.status == 404) {
+            return {
+              name: '404Resource',
+              params: { resource: 'patient' }
             }
-          })
+          } else if (error.response && error.response.status == 401) {
+            return {
+              name: '401Resource'
+            }
+          } else {
+            return { name: 'NetworkError' }
+          }
+        })
     },
     children: [
       {
@@ -167,7 +166,7 @@ const routes = [
     name: 'DocViews',
     component: DocViews,
     props: (route) => ({ page: parseInt(route.query.page) || 1 })
-  },
+  }
 ]
 
 const router = createRouter({

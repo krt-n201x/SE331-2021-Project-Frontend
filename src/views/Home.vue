@@ -1,14 +1,31 @@
 <template>
   <div>
     <div class="patient">
-      <h1>Patient List</h1>
-      <div class="p-grid">
-        <PatientCard
-          class="p-col-12 p-md-6 p-lg-4"
-          v-for="patient in patients"
-          :key="patient.id"
-          :patient="patient"
-        />
+      <div v-if="isAdmin">
+        <h1>Patient List</h1>
+        <div class="p-grid">
+          <PatientCard
+            class="p-col-12 p-md-6 p-lg-4"
+            v-for="patient in patients"
+            :key="patient.id"
+            :patient="patient"
+          />
+        </div>
+      </div>
+      <div v-if="isDoctor">
+        <div class="p-grid">
+          <PatientCard
+            class="p-col-12 p-md-6 p-lg-4"
+            v-for="patient in Store.currentUser.patient"
+            :key="patient.id"
+            :patient="patient"
+          />
+        </div>
+      </div>
+
+      <div v-if="isUser">
+      <h1>Welcome! user {{Store.currentUser.name}}</h1>
+        <router-link :to="{ name: 'Details',  params: { id: Store.currentUser.id } }">Click here to view your profile</router-link>
       </div>
     </div>
 
@@ -47,8 +64,10 @@
 <script>
 import DatabaseService from '@/services/DatabaseService.js'
 import PatientCard from '../components/PatientCard.vue'
+import AuthService from '@/services/AuthService'
 
 export default {
+  inject: ['Store'],
   components: { PatientCard },
   name: 'PatientList',
   props: {
@@ -95,6 +114,15 @@ export default {
     hasNextPage() {
       let totalPages = Math.ceil(this.totalEvents / 9)
       return this.page < totalPages
+    },
+    isAdmin() {
+      return AuthService.hasRoles('ROLE_ADMIN')
+    },
+    isDoctor() {
+      return AuthService.hasRoles('ROLE_DOCTOR')
+    },
+    isUser() {
+      return AuthService.hasRoles('ROLE_USER')
     }
   }
 }

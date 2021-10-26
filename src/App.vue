@@ -70,12 +70,11 @@ export default {
         { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' }
       ],
       itemsDoc: [
-        // { label: 'Home', icon: 'pi pi-fw pi-home', to: '/' },
-        { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' },
-        { label: 'Patient', icon: 'pi pi-fw pi-file', to: '/docviews' }
+        { label: 'Home', icon: 'pi pi-fw pi-home', to: '/' },
+        { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' }
       ],
       itemsUser: [
-        { label: 'Iformation', icon: 'pi pi-fw pi-home', to: '/patmenu' },
+        { label: 'Information', icon: 'pi pi-fw pi-home', to: '/patmenu' },
         { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' }
       ]
     }
