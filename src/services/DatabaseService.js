@@ -16,6 +16,7 @@ export default {
   },
   getUsers() {
     return apiClient.get('/admin')
+  },
   getDoctor(id) {
     return apiClient.get('/doctors/' + id)
   },

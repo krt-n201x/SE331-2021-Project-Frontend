@@ -18,13 +18,6 @@ export default {
           Store.currentLowUser = user.username
         }
     },
-    checkvac(data,check) {
-        if (data == check) {
-                return true
-        } else {
-            return false
-        }
-    },
     register(user) {
         return apiClient.post('/register', {
                 username: user.username,
