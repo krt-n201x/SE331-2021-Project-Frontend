@@ -29,13 +29,11 @@
     <br />
 
     <Form @submit="addComment" :validation-schema="schema">
-      <div v-if="!successful">
-        <div v-if="isDoctor" >
+      <div v-if="isDoctor">
         <div class="form-group">
           <label for="comment">Comment</label>
           <Field name="comment" type="text" class="form-control" />
           <ErrorMessage name="comment" class="error-feedback" />
-        </div>
         </div>
 
         <div class="form-group">
@@ -79,15 +77,18 @@ export default {
       comment: yup.string()
     })
     return {
-      successful: false,
       message: '',
       schema
+    }
+  },
+  computed: {
+    isDoctor() {
+      return AuthService.hasRoles('ROLE_DOCTOR')
     }
   },
   methods: {
     addComment(patient) {
       this.message = ''
-      this.successful = false
       DatabaseService.saveComment(patient, this.patients.id)
         .then(() => {
           location.reload()
@@ -103,9 +104,6 @@ export default {
         name: 'DoctorComment',
         params: { id: this.patients.id }
       })
-    },
-    isDoctor() {
-      return AuthService.hasRoles('ROLE_DOCTOR')
     },
   }
 }
