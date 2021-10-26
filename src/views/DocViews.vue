@@ -50,7 +50,8 @@ import DatabaseService from '@/services/DatabaseService.js'
 import PatientCard from '../components/PatientCard.vue'
 
 export default {
-  components: { DoctorCard },
+  inject: ['Store'],
+  components: { PatientCard },
   name: 'PatientList',
   props: {
     page: {

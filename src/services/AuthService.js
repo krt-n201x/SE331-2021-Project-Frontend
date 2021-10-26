@@ -1,5 +1,5 @@
 import apiClient from '@/services/AxiosClient.js'
-import GStore from '@/store'
+import Store from '@/store'
 
 export default {
     login(user) {
@@ -10,10 +10,14 @@ export default {
             localStorage.setItem('token', response.data.token)
             if (JSON.stringify(response.data.user) != null) {
                 localStorage.setItem('user', JSON.stringify(response.data.user))
-                GStore.currentUser = response.data.user
+                Store.currentUser = response.data.user
+            //     let check = JSON.parse(localStorage.getItem('user'))
+            // if (check.patient != null){
+            //         this.$router.push({name: "DocViews"})
+            //     }
             } else {
                 localStorage.setItem('lowuser', user.username)
-                GStore.currentLowUser = user.username
+                Store.currentLowUser = user.username
             }
             return Promise.resolve(response.data)
         }).catch((error) => {
@@ -25,16 +29,16 @@ export default {
         localStorage.removeItem('token')
         localStorage.removeItem('user')
         localStorage.removeItem('lowuser')
-        GStore.currentUser = null
-        GStore.currentLowUser = null
+        Store.currentUser = null
+        Store.currentLowUser = null
 
     },
     getUser() {
         return JSON.parse(localStorage.getItem('user'))
     },
     hasRoles(roles) {
-        if (GStore.currentUser && roles) {
-            let containRoles = GStore.currentUser.authorities.filter((authority) => roles.includes(authority))
+        if (Store.currentUser && roles) {
+            let containRoles = Store.currentUser.authorities.filter((authority) => roles.includes(authority))
             if (containRoles.length > 0) {
                 return true
             } else {
@@ -64,7 +68,7 @@ export default {
             .then((response) => {
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('user', JSON.stringify(response.data.user))
-                GStore.currentUser = response.data.user
+                Store.currentUser = response.data.user
                 return Promise.resolve(response.data)
             })
             .catch((error) => {
@@ -84,12 +88,15 @@ export default {
             .then((response) => {
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('user', JSON.stringify(response.data.user))
-                GStore.currentUser = response.data.user
+                Store.currentUser = response.data.user
                 return Promise.resolve(response.data)
             })
             .catch((error) => {
                 return Promise.reject(error)
             })
+    },
+    isDoctor() {
+        return this.hasRoles('ROLE_DOCTOR')
     }
 }
 
