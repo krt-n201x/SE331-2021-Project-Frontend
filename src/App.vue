@@ -59,7 +59,7 @@ export default {
   methods: {
     logout() {
       AuthService.logout()
-      this.$router.go()
+      this.$router.go('/ ')
     }
   },
 
@@ -67,6 +67,7 @@ export default {
     return {
       itemsAdmin: [
         { label: 'Home', icon: 'pi pi-fw pi-home', to: '/' },
+        { label: 'List of User', icon: 'pi pi-fw pi-file', to: '/adminhome' },
         { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' }
       ],
       itemsDoc: [

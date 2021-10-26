@@ -1,29 +1,15 @@
 <template>
-  <router-link
-    class="patient-link"
-    :to="{ name: 'Details', params: { id: patient.id } }"
-  >
-    <div class="patient-card">
-      <div class="p-grid">
-        <div class="p-col-5">
-          <img class="photo" :src="patient.imageUrl" />
-        </div>
-        <div class="p-col" id="info">
-          <div id="info2">
-            <h2>{{ patient.name }}</h2>
-            <h3>{{ patient.surname }}</h3>
-            Vaccine Status:
-            <p>{{ patient.status }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </router-link>
+    <tr>
+      <td>{{ patient.id }}</td>
+      <td>{{ patient.name }}</td>
+      <td>{{ patient.surname }}</td>
+      <td>{{ patient.user.email }}</td>
+    </tr>
 </template>
 
 <script>
 export default {
-  name: 'PatientCard',
+  name: 'UserCard',
   props: {
     patient: {
       type: Object,

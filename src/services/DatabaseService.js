@@ -4,6 +4,9 @@ export default {
   getAllPatients() {
     return apiClient.get('/patients')
   },
+  getAllDoctors() {
+    return apiClient.get('/doctors')
+  },
   getPatients(perPage, page) {
     return apiClient.get('/patients?_limit=' + perPage + '&_page=' + page)
   },
@@ -11,6 +14,8 @@ export default {
   getPatient(id) {
     return apiClient.get('/patients/' + id)
   },
+  getUsers() {
+    return apiClient.get('/admin')
   getDoctor(id) {
     return apiClient.get('/doctors/' + id)
   },
@@ -24,9 +29,15 @@ export default {
     })
   },
   saveComment(patient, id) {
-    return apiClient.post('/comment', {
-      id: id,
-      doctor_comm: patient.comment
-    })
+        return apiClient.post('/comment', {
+            id: id,
+            doctor_comm: patient.comment,
+        })
+    },
+  saveDtoP(doctor, id){
+      return apiClient.post('/savedtop', {
+        id: id,
+        doctor: doctor,
+      })
   }
 }
