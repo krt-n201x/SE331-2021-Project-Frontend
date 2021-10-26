@@ -3,6 +3,7 @@
     <div class="patient">
       <h1>List of User</h1>
     </div>
+    <div>
     <table>
       <tr>
         <th>First name</th>
@@ -19,18 +20,22 @@
       <td>{{ data.surname }}</td>
       <td>{{ data.user.email}}</td>
       <td>{{ data.vaccine.length }} dose</td>
-      <td v-if="data.vaccine.length == 2" > no need</td>
-      <td v-if="data.vaccine.length < 2" >
-        <router-link
-            :to="{ name: 'AdminVacSet', params: { id: data.id } }"
-        >   Click here
-        </router-link>
-        </td>
+          <td v-if="data.vaccine.length == 2" > no need</td>
+          <td v-if="data.vaccine.length < 2" >
+            <router-link
+                :to="{ name: 'AdminVacSet', params: { id: data.id } }"
+            >   Click here
+            </router-link>
+            
+            </td>
 
-      <router-link
-    :to="{ name: 'AdminDocSet', params: { id: data.id } }"
-  >   <td> Click here </td>
-      </router-link>
+         <td> <router-link
+        :to="{ name: 'AdminDocSet', params: { id: data.id } }"
+      > Click here </router-link></td>
+    
+        <td>  <router-link
+        :to="{ name: 'AdminRoleSet', params: { id: data.id } }"
+      >Click here</router-link></td>
       
       </tr>
 
@@ -41,6 +46,7 @@
       </tr>
       
     </table>
+    </div>
   </div>
 </template>
 
