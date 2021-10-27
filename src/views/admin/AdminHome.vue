@@ -25,21 +25,17 @@
             :to="{ name: 'AdminVacSet', params: { id: data.id } }"
         >   Click here
         </router-link>
-        </td>
-
-      <router-link
-    :to="{ name: 'AdminDocSet', params: { id: data.id } }"
-  >   <td> Click here </td>
-      </router-link>
-      
+       </td>
+        <router-link :to="{ name: 'AdminDocSet', params: { id: data.id } }">
+          <td>Click here</td>
+        </router-link>
       </tr>
 
-      <tr v-for="(data) in doctor" :key="data.id" :data="data">
-      <td>{{ data.name }}</td>
-      <td>{{ data.surname }}</td>
-      <td>{{ data.user.email }}</td>
+      <tr v-for="data in doctor" :key="data.id" :data="data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.surname }}</td>
+        <td>{{ data.user.email }}</td>
       </tr>
-      
     </table>
   </div>
 </template>
@@ -58,32 +54,32 @@ export default {
     return {
       patient: null,
       doctor: null,
-      user : null
-    };
+      user: null
+    }
   },
   // eslint-disable-next-line no-unused-vars
   created() {
     DatabaseService.getAllPatients()
       .then((response) => {
-        this.patient = response.data;
+        this.patient = response.data
       })
       .catch((error) => {
-        console.log(error);
-      });
+        console.log(error)
+      })
     DatabaseService.getAllDoctors()
       .then((response) => {
-        this.doctor = response.data;
+        this.doctor = response.data
       })
       .catch((error) => {
-        console.log(error);
-      });
+        console.log(error)
+      })
     DatabaseService.getUsers()
       .then((response) => {
-        this.user = response.data;
+        this.user = response.data
       })
       .catch((error) => {
-        console.log(error);
-      });
+        console.log(error)
+      })
   },
 
   computed: {
@@ -92,12 +88,10 @@ export default {
       return this.page < totalPages
     },
     VaccineChevk() {
-
       return localStorage.getItem('user')
     }
   }
 }
-
 </script>
 
 <style scoped>
