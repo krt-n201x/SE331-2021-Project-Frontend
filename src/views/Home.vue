@@ -87,7 +87,7 @@ export default {
   },
   // eslint-disable-next-line no-unused-vars
   beforeRouteEnter(routeTo, routeFrom, next) {
-    DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
+    DatabaseService.getPatients(6, parseInt(routeTo.query.page) || 1)
       .then((response) => {
         next((comp) => {
           comp.patients = response.data
@@ -101,7 +101,7 @@ export default {
       })
   },
   beforeRouteUpdate(routeTo, routeFrom, next) {
-    DatabaseService.getPatients(9, parseInt(routeTo.query.page) || 1)
+    DatabaseService.getPatients(6, parseInt(routeTo.query.page) || 1)
       .then((response) => {
         this.patients = response.data
         this.totalEvents = response.headers['x-total-count']
@@ -115,7 +115,7 @@ export default {
   },
   computed: {
     hasNextPage() {
-      let totalPages = Math.ceil(this.totalEvents / 9)
+      let totalPages = Math.ceil(this.totalEvents / 6)
       return this.page < totalPages
     },
     isAdmin() {

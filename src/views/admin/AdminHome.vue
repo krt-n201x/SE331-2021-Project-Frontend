@@ -19,7 +19,11 @@
         <td>{{ data.user.email }}</td>
         <td>{{ data.vaccine.length }} dose</td>
         <td v-if="data.vaccine.length == 2">no need</td>
-        <td v-if="data.vaccine.length < 2"><Button class="p-button-raised p-button-success p-button p-component"> Click here </Button></td>
+        <td v-if="data.vaccine.length < 2">
+          <router-link :to="{ name: 'AdminDocSet', params: { id: data.id } }">
+          <Button class="p-button-raised p-button-success p-button p-component"> Click here </Button>
+          </router-link>
+        </td>
 
         <!-- <router-link
     :to="{ name: 'AddVaccine', params: { id: data.id } }"
