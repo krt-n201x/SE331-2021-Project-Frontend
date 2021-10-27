@@ -13,20 +13,19 @@
         <th>Set Doctor</th>
         <th>Set Role</th>
       </tr>
-
-      <tr v-for="data in patient" :key="data.id" :data="data">
-        <td>{{ data.name }}</td>
-        <td>{{ data.surname }}</td>
-        <td>{{ data.user.email }}</td>
-        <td>{{ data.vaccine.length }} dose</td>
-        <td v-if="data.vaccine.length == 2">no need</td>
-        <td v-if="data.vaccine.length < 2">click here</td>
-
-        <!-- <router-link
-    :to="{ name: 'AddVaccine', params: { id: data.id } }"
-  >   <td> Click here </td>
-      </router-link> -->
-
+      
+      <tr v-for="(data,) in patient" :key="data.id" :data="data">
+      <td>{{ data.name }}</td>
+      <td>{{ data.surname }}</td>
+      <td>{{ data.user.email}}</td>
+      <td>{{ data.vaccine.length }} dose</td>
+      <td v-if="data.vaccine.length == 2" > no need</td>
+      <td v-if="data.vaccine.length < 2" >
+        <router-link
+            :to="{ name: 'AdminVacSet', params: { id: data.id } }"
+        >   Click here
+        </router-link>
+       </td>
         <router-link :to="{ name: 'AdminDocSet', params: { id: data.id } }">
           <td>Click here</td>
         </router-link>

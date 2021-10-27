@@ -1,6 +1,7 @@
 <template>
   <label v-if="label">{{ label }}</label>
-  <select
+
+  <select v-if =!vaccine
     class="field"
     :value="modelValue"
     v-bind="{
@@ -19,6 +20,24 @@
       {{ option.name }}
     </option>
   </select>
+
+<!--  <select v-if =vaccine-->
+<!--          class="field"-->
+<!--          :value="modelValue"-->
+<!--          v-bind="{-->
+<!--      ...$attrs,-->
+<!--      onChange: ($event) => {-->
+<!--        $emit('update:modelValue', $event.target.value)-->
+<!--      }-->
+<!--    }"-->
+<!--  >-->
+<!--    <option value="Astraceneca" >Astraceneca</option>-->
+<!--    <option value="Sinovac" >Sinovac</option>-->
+<!--    <option value="Sinopharm" >Sinopharm</option>-->
+<!--    <option value="Moderna" >Moderna</option>-->
+
+<!--  </select>-->
+
 </template>
 
 <script>
@@ -34,7 +53,7 @@ export default {
     },
     options: {
       type: Array,
-      required: true
+      required: false
     }
   }
 }
