@@ -25,10 +25,14 @@
           </router-link>
         </li>
       </ul>
+
       <ul v-if="Store.currentUser">
+        <tr>
+          <td class="table"></td>
           <a class="nav-link" @click="logout">
             <Button label= "LogOut" class="p-button-secondary" id="logout" font-awesome-icon icon="sign-out-alt" />
           </a>
+        </tr>
       </ul>
     </nav>
   </div>
@@ -82,6 +86,11 @@ export default {
 </script>
 
 <style>
+.table {
+  width:50%;
+  padding-top: 15%;
+  align-items: center;
+}
 body {
   background-image: url('bg.jpg');
   background-repeat: no-repeat;
