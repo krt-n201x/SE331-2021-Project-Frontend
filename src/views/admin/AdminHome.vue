@@ -11,6 +11,7 @@
         <th>Email</th>
         <th>Vaccine Status</th>
         <th>Set Vaccine</th>
+        <th>Current doctor</th>
         <th>Set Doctor</th>
         <th>Set Role</th>
       </tr>
@@ -22,7 +23,7 @@
         <td>{{ data.vaccine.length }} dose</td>
         <td v-if="data.vaccine.length == 2">no need</td>
         <td v-if="data.vaccine.length < 2">
-          <router-link :to="{ name: 'AdminDocSet', params: { id: data.id } }">
+          <router-link :to="{ name: 'AdminVacSet', params: { id: data.id } }">
           <Button class="p-button-raised p-button-success p-button p-component"> Click here </Button>
           </router-link>
         </td>
@@ -31,14 +32,18 @@
     :to="{ name: 'AddVaccine', params: { id: data.id } }"
   >   <td> Click here </td>
       </router-link> -->
-
-        
+          <td v-if="data.doctor == null" > - </td>
+          <td v-if="data.doctor != null">{{ data.doctor.name }} {{ data.doctor.surname }}</td>
           <td><router-link :to="{ name: 'AdminDocSet', params: { id: data.id } }">
-            <Button class="p-button-raised p-button-success p-button p-component"> Click here </Button>
+            <Button class="p-button-raised p-button-success p-button p-component"> 
+            Click here 
+              </Button>
         </router-link></td>
         <td>  <router-link
         :to="{ name: 'PatientRoleSet', params: { id: data.id } }"
-      >Click here</router-link></td>
+      ><Button class="p-button-raised p-button-success p-button p-component"> 
+            Click here 
+              </Button></router-link></td>
 
       </tr>
 
@@ -49,6 +54,12 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
+        <td> <router-link
+        :to="{ name: 'AdminRoleSetDoc', params: { id: data.id } }"
+      ><Button class="p-button-raised p-button-success p-button p-component"> 
+            Click here 
+              </Button></router-link> </td>
       </tr>
     </table>
     </div>

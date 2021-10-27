@@ -25,8 +25,10 @@
           </router-link>
         </li>
       </ul>
-
-      <ul v-if="Store.currentUser">
+    </nav>
+  </div>
+  <router-view />
+  <ul v-if="Store.currentUser">
         <tr>
           <td class="table"></td>
           <a class="nav-link" @click="logout">
@@ -34,9 +36,6 @@
           </a>
         </tr>
       </ul>
-    </nav>
-  </div>
-  <router-view />
 </template>
 
 <script>
