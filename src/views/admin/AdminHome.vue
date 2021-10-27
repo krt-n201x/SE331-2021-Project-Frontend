@@ -20,22 +20,27 @@
         <td>{{ data.user.email }}</td>
         <td>{{ data.vaccine.length }} dose</td>
         <td v-if="data.vaccine.length == 2">no need</td>
-        <td v-if="data.vaccine.length < 2">click here</td>
+        <td v-if="data.vaccine.length < 2"><Button class="p-button-raised p-button-success p-button p-component"> Click here </Button></td>
 
         <!-- <router-link
     :to="{ name: 'AddVaccine', params: { id: data.id } }"
   >   <td> Click here </td>
       </router-link> -->
 
-        <router-link :to="{ name: 'AdminDocSet', params: { id: data.id } }">
-          <td>Click here</td>
-        </router-link>
+        
+          <td><router-link :to="{ name: 'AdminDocSet', params: { id: data.id } }">
+            <Button class="p-button-raised p-button-success p-button p-component"> Click here </Button>
+        </router-link></td>
+        
       </tr>
 
       <tr v-for="data in doctor" :key="data.id" :data="data">
         <td>{{ data.name }}</td>
         <td>{{ data.surname }}</td>
         <td>{{ data.user.email }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
     </table>
   </div>
@@ -96,6 +101,19 @@ export default {
 </script>
 
 <style scoped>
+td{
+ height: 50px;
+}
+th{
+  width: 1000px;
+  height: 20px;
+  color: rgb(216, 216, 216);
+  background-color: #7f8180;
+}
+
+tr{
+  background-color: #cccccc;
+}
 .patient {
   margin: 5%;
   margin-top: 0%;
