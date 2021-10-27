@@ -19,7 +19,7 @@ import AdminHome from '@/views/admin/AdminHome.vue'
 import AdminDocSet from '@/views/admin/AdminDocSet.vue'
 import AdminVacSet from "@/views/admin/AdminVacSet.vue"
 import AdminRoleSet from "@/views/admin/AdminRoleSet.vue";
-
+import DocViews from '@/views/DocViews'
 
 const routes = [{
         path: '/',
@@ -36,6 +36,43 @@ const routes = [{
     {
         path: '/patmenu/:id',
         name: 'Information',
+    props: true,
+    component: Information,
+    beforeEnter: (to) => {
+      return DatabaseService.getPatient(to.params.id)
+        .then((response) => {
+          Store.patients = response.data
+        })
+        .catch((error) => {
+          if (error.response && error.response.status == 404) {
+            return {
+              name: '404Resource',
+              params: { resource: 'patient' }
+            }
+          } else if (error.response && error.response.status == 401) {
+            return {
+              name: '401Resource'
+            }
+          } else {
+            return { name: 'NetworkError' }
+          }
+        })
+    },
+    children: [
+      {
+        path: '',
+        name: 'Details',
+        component: Details
+      },
+      // {
+      //   path: 'doctorcomment',
+      //   name: 'DoctorComment',
+      //   props: true,
+      //   component: DoctorComment
+      // },
+      {
+        path: 'vaccine',
+        name: 'Vaccine',
         props: true,
         component: Information,
         beforeEnter: (to) => {
@@ -274,7 +311,14 @@ const routes = [{
                     }
                 })
         }
-    }
+    },
+  {
+    path: '/docviews',
+    name: 'DocViews',
+    component: DocViews,
+    props: (route) => ({ page: parseInt(route.query.page) || 1 })
+  }
+  
 ]
 
 const router = createRouter({

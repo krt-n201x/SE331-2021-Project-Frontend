@@ -25,12 +25,14 @@
           </router-link>
         </li>
       </ul>
+
       <ul v-if="Store.currentUser">
-        <li class="nav-item">
+        <tr>
+          <td class="table"></td>
           <a class="nav-link" @click="logout">
-            <font-awesome-icon icon="sign-out-alt" /> LogOut
+            <Button label= "LogOut" class="p-button-secondary" id="logout" font-awesome-icon icon="sign-out-alt" />
           </a>
-        </li>
+        </tr>
       </ul>
     </nav>
   </div>
@@ -72,11 +74,10 @@ export default {
       ],
       itemsDoc: [
         { label: 'Home', icon: 'pi pi-fw pi-home', to: '/' },
-        { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' },
-        { label: 'About', icon: 'pi pi-fw pi-file', to: '/responpat' }
+        { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' }
       ],
       itemsUser: [
-        { label: 'Iformation', icon: 'pi pi-fw pi-home', to: '/patmenu' },
+        { label: 'Information', icon: 'pi pi-fw pi-home', to: '/patmenu' },
         { label: 'About', icon: 'pi pi-fw pi-file', to: '/about' }
       ]
     }
@@ -85,6 +86,11 @@ export default {
 </script>
 
 <style>
+.table {
+  width:50%;
+  padding-top: 15%;
+  align-items: center;
+}
 body {
   background-image: url('bg.jpg');
   background-repeat: no-repeat;
@@ -125,4 +131,13 @@ body {
   animation-name: fade;
   animation-duration: 6s;
 }
+
+ #logout{
+   align-content: center;
+   align-items: center;
+   padding-left: 0px;
+   padding-right: 8px;
+
+ }
+
 </style>
