@@ -34,7 +34,7 @@
       > Click here </router-link></td>
     
         <td>  <router-link
-        :to="{ name: 'AdminRoleSet', params: { id: data.id } }"
+        :to="{ name: 'PatientRoleSet', params: { id: data.id } }"
       >Click here</router-link></td>
       
       </tr>

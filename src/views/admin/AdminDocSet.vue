@@ -67,6 +67,7 @@ inject: ['Store'],
   },
   methods: {
       saveDoctor() {
+          console.log(event)
           DatabaseService.saveDtoP( this.event.doctor, Store.patients.id)
           .then((response) => {
             console.log(response)

@@ -1,59 +1,83 @@
 <template>
   <div>
+    <div v-if="Store.patients">
     <p>{{ Store.patients.name }}</p>
     <p>{{ Store.patients.surname }}</p>
 
-    <form @submit.prevent="saveDoctor">
+    <form @submit.prevent="saveRolePatient">
         <h3>Add Role</h3>
-        <!-- <select 
-        :value="modelValue"
-        v-model="Store.doctors.id" 
-        class="select"
-        > 
-            <option 
-            v-for="option in Store.doctors"
-            :value="option.id"
-            :key="option.id"
-            :selected="option.id === doctors.id"
-            >
-            {{ option.name }} {{ option.surname }}
-            </option>
-        </select> -->
-        <BaseSelect
-        :options="Store.doctors"
-        v-model="event.doctor.id"
-        label="Select Role"
-      />
 
-
+        <select :value="modelValue.patient"
+          v-model="rolePat.patient.user.authorities.name"
+                v-bind="{
+              ...$attrs,
+        onChange: ($rolePat) => {
+        $emit('update:modelValue', $rolePat.target.value)
+          }
+        }"
+      >
+          <option value="ROLE_USER" >Patient</option>
+          <option value="ROLE_DOCTOR" >Doctor</option>
+          <option value="ROLE_ADMIN" >Admin</option>
+        </select>
         <button type="submit">Submit</button>
     </form>
+    
+    </div>
+    <div v-if="Store.doctor">
+    <p>{{ Store.doctor.name }}</p>
+    <p>{{ Store.doctor.surname }}</p>
+
+    <form @submit.prevent="saveRoleDoc">
+        <h3>Add Role</h3>
+
+        <select :value="modelValue.user.authorities[0].name"
+          v-model="roleDoc.user.authorities[0].name"
+                v-bind="{
+              ...$attrs,
+        onChange: ($roleDoc) => {
+        $emit('update:modelValue', $roleDoc.target.value)
+          }
+        }"
+      >
+          <option value="ROLE_USER" >Patient</option>
+          <option value="ROLE_DOCTOR" >Doctor</option>
+          <option value="ROLE_ADMIN" >Admin</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+
+    
   </div>
 </template>
 
 <script>
 import DatabaseService from '@/services/DatabaseService.js'
-import BaseSelect from '@/components/BaseSelect.vue';
 import Store from "@/store";
 export default {
-    components: { BaseSelect },
     props: {
-                modelValue: {   
+            modelValue: {   
                     type: [String, Number, Object],
                     default: ''
                 }
             },
 inject: ['Store'],
   data() {
-    return {
-        event: {
-            doctor: { id: '', name: '', surname: '', age: ''}
+    if(Store.doctor){
+      return {
+        roleDoc: {
+            doctor:{ id: Store.doctor.id , user: { authorities : {name: ''}}}
         },
-        doc: {
-            doctors: { id: '', name: '', surname: '', age: ''}
+      }
+    }
+    else {   
+        return{
+        rolePat: {
+            patient:{ id: Store.patients.id , user: { authorities : {name: ''}}}
         },
-        patient: Store.patients.id
-    };
+        } 
+    }
   },
   // eslint-disable-next-line no-unused-vars
   created() {
@@ -66,8 +90,21 @@ inject: ['Store'],
       });
   },
   methods: {
-      saveDoctor() {
-          DatabaseService.saveDtoP( this.event.doctor, Store.patients.id)
+      saveRoleDoc() {
+          DatabaseService.saveRoleDoc(this.roleDoc)
+          .then((response) => {
+            console.log(response)
+            this.$router.push({
+              name: 'Home'
+            })
+          })
+          .catch((error) => {
+            console.log(error);
+        });
+      },
+      saveRolePatient() {
+        console.log(this.rolePat)
+          DatabaseService.saveRolePat(this.rolePat.patient)
           .then((response) => {
             console.log(response)
             this.$router.push({
