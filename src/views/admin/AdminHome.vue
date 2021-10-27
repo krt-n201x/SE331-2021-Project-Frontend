@@ -3,6 +3,7 @@
     <div class="patient">
       <h1>List of User</h1>
     </div>
+    <div>
     <table>
       <tr>
         <th>First name</th>
@@ -13,6 +14,7 @@
         <th>Set Doctor</th>
         <th>Set Role</th>
       </tr>
+
       <tr v-for="data in patient" :key="data.id" :data="data">
         <td>{{ data.name }}</td>
         <td>{{ data.surname }}</td>
@@ -34,6 +36,10 @@
           <td><router-link :to="{ name: 'AdminDocSet', params: { id: data.id } }">
             <Button class="p-button-raised p-button-success p-button p-component"> Click here </Button>
         </router-link></td>
+        <td>  <router-link
+        :to="{ name: 'PatientRoleSet', params: { id: data.id } }"
+      >Click here</router-link></td>
+
       </tr>
 
       <tr v-for="data in doctor" :key="data.id" :data="data">
@@ -45,6 +51,7 @@
         <td></td>
       </tr>
     </table>
+    </div>
   </div>
 </template>
 

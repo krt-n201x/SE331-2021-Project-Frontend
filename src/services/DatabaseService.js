@@ -13,6 +13,13 @@ export default {
             vaccine: vaccine,
         })
     },
+
+    saveRoleDoc(user, id) {
+        return apiClient.post('/roledoc?role=' + user + '&id=' + id)
+    },
+    saveRolePat(user, id) {
+        return apiClient.post('/rolepat?role=' + user + '&id=' + id)
+    },
     addVac(vaccine) {
         return apiClient.post('/addvac', vaccine)
     },
