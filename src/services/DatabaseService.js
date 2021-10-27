@@ -47,11 +47,11 @@ export default {
             vaccine: vaccine,
         })
     },
-    saveRoleDoc(user) {
-        return apiClient.post('/roledoc', user)
+    saveRoleDoc(user, id) {
+        return apiClient.post('/roledoc?role=' + user + '&id=' + id)
     },
-    saveRolePat(user) {
-        return apiClient.post('/rolepat', user)
+    saveRolePat(user, id) {
+        return apiClient.post('/rolepat?role=' + user + '&id=' + id)
     },
 
 }

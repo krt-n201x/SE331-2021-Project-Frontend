@@ -8,7 +8,7 @@
         <h3>Add Role</h3>
 
         <select :value="modelValue.patient"
-          v-model="rolePat.patient.user.authorities.name"
+          v-model="rolePat"
                 v-bind="{
               ...$attrs,
         onChange: ($rolePat) => {
@@ -31,8 +31,8 @@
     <form @submit.prevent="saveRoleDoc">
         <h3>Add Role</h3>
 
-        <select :value="modelValue.user.authorities[0].name"
-          v-model="roleDoc.user.authorities[0].name"
+        <select :value="modelValue.doctor"
+          v-model="roleDoc"
                 v-bind="{
               ...$attrs,
         onChange: ($roleDoc) => {
@@ -67,14 +67,14 @@ inject: ['Store'],
     if(Store.doctor){
       return {
         roleDoc: {
-            doctor:{ id: Store.doctor.id , user: { authorities : {name: ''}}}
+            name: ''
         },
       }
     }
     else {   
         return{
         rolePat: {
-            patient:{ id: Store.patients.id , user: { authorities : {name: ''}}}
+            name: ''
         },
         } 
     }
@@ -91,7 +91,7 @@ inject: ['Store'],
   },
   methods: {
       saveRoleDoc() {
-          DatabaseService.saveRoleDoc(this.roleDoc)
+          DatabaseService.saveRoleDoc(this.roleDoc, Store.doctor.id)
           .then((response) => {
             console.log(response)
             this.$router.push({
@@ -104,7 +104,7 @@ inject: ['Store'],
       },
       saveRolePatient() {
         console.log(this.rolePat)
-          DatabaseService.saveRolePat(this.rolePat.patient)
+          DatabaseService.saveRolePat(this.rolePat, Store.patients.id)
           .then((response) => {
             console.log(response)
             this.$router.push({
