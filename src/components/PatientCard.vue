@@ -6,14 +6,14 @@
     <div class="patient-card">
       <div class="p-grid">
         <div class="p-col-5">
-          <img class="photo" :src="patient.imageUrl" />
+          <img class="photo" src="https://www.img.in.th/images/dc98e9082e4cbf327401cc1a2c04ab2d.png" />
         </div>
         <div class="p-col" id="info">
           <div id="info2">
             <h2>{{ patient.name }}</h2>
             <h3>{{ patient.surname }}</h3>
             Vaccine Status:
-            <p>{{ patient.status }}</p>
+            <p>take {{ patient.vaccine.length }} dose</p>
           </div>
         </div>
       </div>

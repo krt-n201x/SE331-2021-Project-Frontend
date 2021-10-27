@@ -26,11 +26,9 @@
         </li>
       </ul>
       <ul v-if="Store.currentUser">
-        <li class="nav-item">
           <a class="nav-link" @click="logout">
-            <font-awesome-icon icon="sign-out-alt" /> LogOut
+            <Button label= "LogOut" class="p-button-secondary" id="logout" font-awesome-icon icon="sign-out-alt" />
           </a>
-        </li>
       </ul>
     </nav>
   </div>
@@ -124,4 +122,13 @@ body {
   animation-name: fade;
   animation-duration: 6s;
 }
+
+ #logout{
+   align-content: center;
+   align-items: center;
+   padding-left: 0px;
+   padding-right: 8px;
+
+ }
+
 </style>
